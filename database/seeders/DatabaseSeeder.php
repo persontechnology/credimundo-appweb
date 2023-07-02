@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         Role::firstOrCreate(['name' => 'CAJERO']);
         Role::firstOrCreate(['name' => 'ATENCION AL CLIENTE']);
         Role::firstOrCreate(['name' => 'ACCESOR DE CREDITO']);
-        
+        Role::firstOrCreate(['name' => 'GARANTE']);
 
         $user = User::firstOrCreate(
             ['name' => config('app.EMAIL_ADMIN')],

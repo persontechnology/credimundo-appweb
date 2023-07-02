@@ -9,7 +9,7 @@
                     <strong>Tipo de Crédito: </strong> {{ $credito->tipoCredito->nombre }} <br>
                     <strong>Asesor: </strong> {{ $credito->creadoPor->apellidos_nombres }} <br>
                     <strong>Monto de Financiado: </strong> {{ number_format($credito->monto,2) }} <br>
-                    <strong>Actividad: </strong> <small>{{ $credito->tipoCredito->descripcion }}</small> <br>
+                    <strong>Actividad: </strong> <small>{{ $credito->actividad }}</small> <br>
                 </td>
                 <td scope="col">
                     <strong>Día de Pago: </strong>{{ Carbon\Carbon::parse($credito->dia_pago)->format('d'); }} <br>
