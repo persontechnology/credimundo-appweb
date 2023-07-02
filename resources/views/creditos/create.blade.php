@@ -86,13 +86,11 @@
                                 <i class="fa-solid fa-piggy-bank"></i>
                             </div>
                             <select class="accrue-rate_compare form-select @error('interes_certificado_plazo_fijo') is-invalid @enderror" name="interes_certificado_plazo_fijo" id="interes_certificado_plazo_fijo" required>
-                                
+                                <option value="5" {{ old('interes_certificado_plazo_fijo')=='5'?'selected':'' }}>5%</option>
+                                <option value="4" {{ old('interes_certificado_plazo_fijo')=='4'?'selected':'' }}>4%</option>
+                                <option value="3" {{ old('interes_certificado_plazo_fijo')=='3'?'selected':'' }}>3%</option>
+                                <option value="2" {{ old('interes_certificado_plazo_fijo')=='2'?'selected':'' }}>2%</option>
                                 <option value="1" {{ old('interes_certificado_plazo_fijo')=='1'?'selected':'' }}>1%</option>
-                                <option value="2" {{ old('interes_certificado_plazo_fijo')=='2'?'selected':'' }}>2%</option>    
-                                <option value="3" {{ old('interes_certificado_plazo_fijo')=='3'?'selected':'' }}>3%</option>    
-                                <option value="4" {{ old('interes_certificado_plazo_fijo')=='4'?'selected':'' }}>4%</option>    
-                                <option value="5" {{ old('interes_certificado_plazo_fijo')=='5'?'selected':'' }}>5%</option>    
-                                
                             </select>
                             <label for="interes_certificado_plazo_fijo">Certificado plazo fijo<i class="text-danger">*</i></label>
                             @error('interes_certificado_plazo_fijo')
