@@ -27,7 +27,7 @@
                 <td scope="col"><small>{{ config('app.name','') }}</small></td>
                 <td scope="col"><small>Salcedo-Ecuador</small></td>
                 <td scope="col"><small>Tel. +593 989570091</small></td>
-                <td scope="col"><small>www.credimundo.com</small></td>
+                <td scope="col"><small>www.credimundo.com.ec</small></td>
                 <td scope="col"><small>info@credimundo.com.ec</small></td>
             </tr>
         </thead>
