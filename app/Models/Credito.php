@@ -27,7 +27,8 @@ class Credito extends Model
         'detalle',
         'actividad',
         'tipo_credito_id',
-        'cuenta_user_id'
+        'cuenta_user_id',
+        'fecha_vencimiento'
     ];
 
     public static function boot()

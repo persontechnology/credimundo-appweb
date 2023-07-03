@@ -41,10 +41,10 @@
     </div>
     <p>
         Debo(emos) y pagaré(mos), solidariamente a <strong>{{ $credito->numero_cuotas }} </strong> cuotas fijas; en la cuidad de <strong>{{ $credito->creadoPor->canton??'SALCEDO' }}</strong> o en el lugar donde se me(nos) solicite, a la orden de <strong>{{ config('app.name','CREDIMUNDO') }}</strong>, la cantidad de
-        <strong>${{ number_format($credito->monto,2) }}</strong> Dólares de los Estados Unidos de América, por igual valor recibido de dicha institución Financiera, en moneda de curso legal que la he(mos) recibido para invirtirla en actividad <strong>{{ $credito->actividad??$credito->tipoCredito->descripcion??'' }}</strong>.
+        <strong>${{ number_format($credito->monto,2) }}</strong> Dólares de los Estados Unidos de América, por igual valor recibido de dicha institución Financiera, en moneda de curso legal que la he(mos) recibido para invirtirla en actividad <strong>{{ $credito->actividad }}</strong>.
     </p>
     <p>
-        El pago se realizara cada <strong>{{ Carbon\Carbon::parse($credito->dia_pago)->format('d'); }}</strong> días, mediante <strong>{{ $credito->numero_cuotas }}</strong> cuotas fijas de <strong>${{ $credito->pago_mensual }}</strong> Dólares de los Estados Unidos de América, que incluye el capital y el interes del <strong>%{{ $credito->tasa_nominal }}</strong> por ciento anual.
+        El pago se realizara cada <strong>{{ Carbon\Carbon::parse($credito->dia_pago)->format('d'); }}</strong> días, mediante <strong>{{ $credito->numero_cuotas }}</strong> cuotas fijas de <strong>${{ $credito->pago_mensual }}</strong> Dólares de los Estados Unidos de América, que incluye el capital y el interes del <strong>%{{ $credito->tasa_efectiva_anual }}</strong> por ciento anual.
     </p>
     <p>
         En caso de mora reconoceré(mos) el interés de 1.1 veces de la tasa activa hasta la cancelación total.
