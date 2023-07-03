@@ -20,6 +20,7 @@
                     <h6 class="mb-0">MG.ING DAVID CRIOLLO</h6>
                     <span class="text-muted">PRESIDENTE</span>
                 </div>
+                
             </div>
         </div>
     </div>

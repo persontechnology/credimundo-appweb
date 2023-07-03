@@ -1,6 +1,6 @@
 <div class="navbar navbar-sm navbar-footer border-top">
     <div class="container-fluid">
-        <span>&copy; {{ date('Y') }} <a href="https://persontechnology.com/">Person Technology</a></span>
+        <span>&copy; {{ date('Y') }} by <a href="https://persontechnology.com/">Person Technology</a></span>
 
         <ul class="nav">
             <li class="nav-item">
