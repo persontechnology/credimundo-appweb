@@ -91,6 +91,7 @@
                                 <option value="3" {{ old('interes_certificado_plazo_fijo')=='3'?'selected':'' }}>3%</option>
                                 <option value="2" {{ old('interes_certificado_plazo_fijo')=='2'?'selected':'' }}>2%</option>
                                 <option value="1" {{ old('interes_certificado_plazo_fijo')=='1'?'selected':'' }}>1%</option>
+                                <option value="0" {{ old('interes_certificado_plazo_fijo')=='0'?'selected':'' }}>0%</option>
                             </select>
                             <label for="interes_certificado_plazo_fijo">Certificado plazo fijo<i class="text-danger">*</i></label>
                             @error('interes_certificado_plazo_fijo')

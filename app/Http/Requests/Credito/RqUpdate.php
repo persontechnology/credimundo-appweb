@@ -29,7 +29,7 @@ class RqUpdate extends FormRequest
             'plazo'=>'required',
             'tipo_credito'=>'required|exists:tipo_creditos,tasa_efectiva_anual',
             'apellidos_nombres'=>'nullable',
-            'interes_certificado_plazo_fijo'=>'required|numeric|gt:0|regex:'.$rg_decimal,
+            'interes_certificado_plazo_fijo'=>'required|in:0,1,2,3,4,5',
             'total_certificado_plazo_fijo'=>'required|numeric|gt:0|regex:'.$rg_decimal,
             'dia_pago'=>'required|date',
             'detalle'=>'nullable|string|max:255',

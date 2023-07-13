@@ -60,6 +60,14 @@
                             <i class="ph ph-vault"></i><span>Caja</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('transacciones.index') }}" class="nav-link {{ Route::is('transacciones*')?'active':'' }}">
+                            <i class="ph ph-repeat"></i>
+                            <span>
+                                Transacciones
+                            </span>
+                        </a>
+                    </li> 
 
                 @endhasanyrole
                 @hasanyrole('ADMINISTRADOR|SECRETARIA')
@@ -77,16 +85,6 @@
                             </span>
                         </a>
                     </li>
-                    
-                    <li class="nav-item">
-                        <a href="{{ route('transacciones.index') }}" class="nav-link {{ Route::is('transacciones*')?'active':'' }}">
-                            <i class="ph ph-repeat"></i>
-                            <span>
-                                Transacciones
-                            </span>
-                        </a>
-                    </li> 
-
                     <li class="nav-item">
                         <a href="{{ route('creditos.index') }}" class="nav-link {{ Route::is('creditos*')?'active':'' }}">
                             <i class="ph-currency-dollar"></i>
