@@ -106,8 +106,8 @@
                         <label>Identificación de otra persona</label>
                         @error('identificacion_otra_persona')
                             <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
                 </div>
@@ -120,8 +120,8 @@
                         <label>Apellidos y nombres de otra persona</label>
                         @error('nombre_otra_persona')
                             <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
                 </div>
@@ -249,13 +249,13 @@
             },
             submitHandler: function(form) {
                 var n_cuenta=$("#numeroCuenta").html();
-                var socio='Usuario: '+$('#txt_apellidos_nombres').val();
+                var socio='Socio: '+$('#txt_apellidos_nombres').val();
                 var tipo_transaccion= $('#tipoTransaccion').find('option:selected').text();
                 var v_efectivo= $('#txt_valor').val();
 
                 $.confirm({
                     title: 'CONFIRMAR TRANSACCIÓN',
-                    content: ""+n_cuenta+"<br>"+socio+"<br>"+tipo_transaccion+"<br>Efectivo:"+v_efectivo,
+                    content: ""+n_cuenta+"<br>"+socio+"<br>"+tipo_transaccion+"<br>Valor:"+v_efectivo,
                     type: 'blue',
                     theme: 'modern',
                     icon: 'fa fa-triangle-exclamation',

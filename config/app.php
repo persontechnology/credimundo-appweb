@@ -198,5 +198,7 @@ return [
     'ROLE_ADMIN' => env('ROLE_ADMIN', ''),
     'ROLE_SOCIO'=>env('ROLE_SOCIO',''),
     // tipo de creditos o CAPF
-    'CERTIFICADO_DPF'=>env('CERTIFICADO_DPF','')
+    'CERTIFICADO_DPF'=>env('CERTIFICADO_DPF',''),
+    'EMAIL_SECRE'=>env('EMAIL_SECRE',''),
+    'PASSWORD_SECRE'=>env('PASSWORD_SECRE',''),
 ];

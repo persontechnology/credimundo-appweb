@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CajaController;
 use App\Http\Controllers\CheckTwoFactorCotroller;
 use App\Http\Controllers\CreditoController;
 use App\Http\Controllers\CuentaUserController;
@@ -63,6 +64,13 @@ Route::middleware(['auth', 'verified','2fa'])->group(function () {
     Route::get('cuentas-usuario/solicitud-apertura-cuenta/{id}',[CuentaUserController::class,'solicitudAperturaCuenta'])->name('cuentas-usuario.solicitud-apertura-cuenta');
     Route::get('cuentas-usuario/transacciones-pdf/{id}',[CuentaUserController::class,'transaccionesPdf'])->name('cuentas-usuario.transacciones-pdf');
     Route::post('cuentas-usuario/actualizar-estado',[CuentaUserController::class,'actualizarEstado'])->name('cuentas-usuario.actualizar-estado');
+    Route::post('cuentas-usuario/guardar-transaccion',[CuentaUserController::class,'guardarTransaccion'])->name('cuentas-usuario.guardar-transacion');
+    Route::get('cuentas-usuario/imprimir-recibo/{idTrans}', [CuentaUserController::class,'imprimirRecibo'])->name('cuentas-usuario.imprimirRecibo');
+    Route::get('cuentas-usuario/imprimir-comprobante/{idTrans}', [CuentaUserController::class,'imprimirComprobante'])->name('cuentas-usuario.imprimirComprobante'); 
+    Route::get('cuentas-usuario/anular-transaccion/{idTrans}', [CuentaUserController::class,'anularTransaccion'])->name('cuentas-usuario.anularTransaccion'); 
+    Route::post('cuentas-usuario/anular-transaccion-guardar', [CuentaUserController::class,'anularTransaccionGuardar'])->name('cuentas-usuario.anularTransaccionGuardar'); 
+    
+    
     
     // transacciones
     Route::resource('transacciones', TransaccionController::class);
@@ -85,4 +93,7 @@ Route::middleware(['auth', 'verified','2fa'])->group(function () {
     Route::post('plazo-fijo/actualizar-estado', [PlazoFijoController::class,'actualizarEstado'])->name('plazo-fijo.actualizar-estado');
     Route::get('plazo-fijo/tabla-amortizacion/{id}', [PlazoFijoController::class,'tablaAmortizacion'])->name('plazo-fijo.tabla-amortizacion');
     Route::get('plazo-fijo/certificadopf/{id}', [PlazoFijoController::class,'certificadopf'])->name('plazo-fijo.certificadopf');
+
+    // caja
+    Route::resource('caja', CajaController::class);
 });

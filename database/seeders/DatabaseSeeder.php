@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $role = Role::firstOrCreate(['name' => config('app.ROLE_ADMIN')]);
         Role::firstOrCreate(['name' => config('app.ROLE_SOCIO')]);
         // roles
-        Role::firstOrCreate(['name' => 'SECRETARIA']);
+        $role_s=Role::firstOrCreate(['name' => 'SECRETARIA']);
         Role::firstOrCreate(['name' => 'CAJERO']);
         Role::firstOrCreate(['name' => 'ATENCION AL CLIENTE']);
         Role::firstOrCreate(['name' => 'ACCESOR DE CREDITO']);
@@ -30,12 +30,22 @@ class DatabaseSeeder extends Seeder
             ['name' => config('app.EMAIL_ADMIN')],
             [
                 'email' => config('app.EMAIL_ADMIN'),
-                'password' => Hash::make(config('app.PASSWORD_ADMIN'))
+                'password' => Hash::make(config('app.PASSWORD_ADMIN')),
+                'estado'=>'ACTIVO'
+            ]
+        );
+
+        $user_s = User::firstOrCreate(
+            ['name' => config('app.EMAIL_SECRE')],
+            [
+                'email' => config('app.EMAIL_SECRE'),
+                'password' => Hash::make(config('app.PASSWORD_SECRE')),
+                'estado'=>'ACTIVO'
             ]
         );
 
         $user->syncRoles($role);
-
+        $user_s->syncRoles($role_s);
 
         // llamar a todos los seeders
         $this->call([

@@ -11,7 +11,7 @@ class TipoTransaccionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:ADMINISTRADOR|SECRETARIA']);
+        $this->middleware(['role:ADMINISTRADOR']);
     }
     public function index(TipoTransaccionDataTable $dataTable)
     {

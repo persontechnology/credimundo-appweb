@@ -38,7 +38,7 @@
                     </a>
                 </li>
 
-                @hasanyrole('ADMINISTRADOR|SECRETARIA')
+                @hasanyrole('ADMINISTRADOR')
                     <li class="nav-item">
                         <a href="{{ route('tipo-cuentas.index') }}" class="nav-link {{ Route::is('tipo-cuentas*')?'active':'' }}">
                             <i class="ph-cards"></i><span>Tipo de cuenta</span>
@@ -55,6 +55,14 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{ route('caja.index') }}" class="nav-link {{ Route::is('caja*')?'active':'' }}">
+                            <i class="ph ph-vault"></i><span>Caja</span>
+                        </a>
+                    </li>
+
+                @endhasanyrole
+                @hasanyrole('ADMINISTRADOR|SECRETARIA')
                     <li class="nav-item">
                         <a href="{{ route('usuarios.index') }}" class="nav-link {{ Route::is('usuarios*')?'active':'' }}">
                             <i class="ph-users"></i><span>Usuario</span>

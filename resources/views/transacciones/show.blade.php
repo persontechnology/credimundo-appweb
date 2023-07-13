@@ -36,7 +36,7 @@
             <strong>Fecha creado:</strong> {{ $trans->created_at }} <br>
             <strong>Creado por:</strong> {{ $trans->creadoPor->apellidos_nombres }} <br>
             <strong>Fecha actualizado:</strong> {{ $trans->updated_at }} <br>
-            <strong>Creado por:</strong> {{ $trans->actualizadoPor->apellidos_nombres }} <br>
+            <strong>Actualizado por:</strong> {{ $trans->actualizadoPor->apellidos_nombres }} <br>
             <strong>Detalle:</strong> {{ $trans->detalle }} <br>
             <strong>Detalle de anulación:</strong> {{ $trans->descripcion_estado }} <br>
             <strong>ESTADO:</strong> {{ $trans->estado }} <br>
@@ -60,7 +60,7 @@
                             <tr>
                                 <td>{{ $ultr->created_at->toDateString() }}</td>
                                 <td>{{ $ultr->tipoTransaccion->tipo==='SUMAR'?'+':'-' }}{{ $ultr->tipoTransaccion->nombre }}</td>
-                                <td>{{ $ultr->valor_efectivo }}</td>
+                                <td>{{ $ultr->valor }}</td>
                                 <td>{{ $ultr->valor_disponible }}</td>
                             </tr>
                         @endforeach

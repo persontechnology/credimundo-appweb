@@ -4,9 +4,8 @@
 @endsection
 @section('content')
 
-<form action="{{ route('transacciones.update',$trans) }}" method="POST" autocomplete="off" id="formCreateTransaccion">
+<form action="{{ route('cuentas-usuario.anularTransaccionGuardar') }}" method="POST" autocomplete="off" id="formCreateTransaccion">
     @csrf
-    @method("PUT")
     <input type="hidden" name="id" value="{{ $trans->id }}">
     <div class="card">
         <div class="card-header">

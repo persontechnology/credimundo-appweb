@@ -29,6 +29,6 @@
         </div>
     </div>
     <a href="{{ route('cuentas-usuario.show',$cu->id) }}" class="text-body" data-bs-popup="tooltip" title="Detalle">
-        <i class="ph ph-eye"></i>
+        <i class="ph ph-arrow-fat-right"></i>
     </a>
 </div>

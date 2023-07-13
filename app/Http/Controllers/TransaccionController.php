@@ -91,7 +91,6 @@ class TransaccionController extends Controller
 
         $data = array(
             'trans' => $transaccion,
-            'tipoTransacciones' => TipoTransaccion::where('estado','ACTIVO')->get(),
         );
         return view('transacciones.edit',$data);
     }
@@ -130,12 +129,12 @@ class TransaccionController extends Controller
                 $t->estado='ANULADO';
                 $t->descripcion_estado=$request->detalle;
                 $t->save();
-                DB::commit();
+                
                 Session::flash('success','Transacción ANULADA.');
             }else{
                 Session::flash('success','Transacción no actualizado ya que el estado es ANULADO.');
             }
-           
+            DB::commit();
             return redirect()->route('transacciones.show',$t);
         } catch (\Throwable $th) {
             DB::rollBack();

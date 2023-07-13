@@ -21,10 +21,7 @@
             <a href="{{ route('transacciones.edit',$t) }}" class="dropdown-item">
                 <i class="ph ph-prohibit me-2"></i>
                 Anular
-            </a>
-
-
-            
+            </a> 
         </div>
     </div>
 </div>

@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\DataTables\CuentaUser\UserDataTable;
 use App\DataTables\CuentaUserDataTable;
+use App\Http\Requests\Transaccion\StoreRq;
 use App\Models\CuentaUser;
 use App\Models\TipoCuenta;
+use App\Models\TipoTransaccion;
 use App\Models\Transaccion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 use PDF;
@@ -53,6 +57,7 @@ class CuentaUserController extends Controller
         ]);
 
         $tc=TipoCuenta::findOrFail($request->tipoCuenta);
+        
         $data = array(
             'valor_apertura'=>$tc->valor_apertura,
             'valor_debito'=>$tc->valor_debito,
@@ -84,7 +89,8 @@ class CuentaUserController extends Controller
         $listado=$cuentaUser->transacciones()->orderBy('id','desc')->take(112)->get();
         $data = array(
             'transacciones' => $listado,
-            'cuentaUser'=>$cuentaUser
+            'cuentaUser'=>$cuentaUser,
+            'tipoTransacciones' => TipoTransaccion::where('estado','ACTIVO')->get()
         );
         return view('cuentas-usuario.show',$data);
     }
@@ -262,5 +268,121 @@ class CuentaUserController extends Controller
         ->setOption('page-width', '91')
         ->setOption('page-height', '296');
         return $pdf_encabezado->inline('Libreta');
+    }
+
+    // Deivid, tener cuidado con esta validacion se usa tambien en transaccioncontroller.store
+    function guardarTransaccion(StoreRq $request) {
+        $data = array(
+            'valor'=>$request->valor,
+            'estado'=>'OK',
+            'detalle'=>$request->detalle,
+            'cuenta_user_id'=>$request->cuentaUser,
+            'tipo_transaccion_id'=>$request->tipoTransaccion,
+            'quien_realiza_transaccion'=>$request->quienRealizaTransaccion,
+            'identificacion_otra_persona'=>$request->identificacion_otra_persona,
+            'nombre_otra_persona'=>$request->nombre_otra_persona,
+        );
+        try {
+            DB::beginTransaction();
+            $t=Transaccion::create($data);
+            DB::commit();
+            Session::flash('success','Transacción realizado');
+            return redirect()->route('cuentas-usuario.show',$request->cuentaUser);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Session::flash('info','Transacción no realizado'.$th->getMessage());
+            return redirect()->back()->withInput();
+        }
+    }
+
+
+    public function imprimirRecibo($transaccionId)
+    {
+        $transaccion=Transaccion::findOrFail($transaccionId);
+
+        $data = array(
+            'trans'=>$transaccion,
+            'ultimos_trans'=>$transaccion->cuentaUser->transacciones()->where('id','<',$transaccion->id)->latest()->take(3)->get()
+        );
+        $pdf = PDF::loadView('transacciones.imprimir-recibo', $data)
+        ->setOption('page-width', '80')
+        ->setOption('page-height', '297')
+        ->setOption('margin-top', 0)
+        ->setOption('margin-bottom', 2)
+        ->setOption('margin-left', 2)
+        ->setOption('margin-right', 2);
+        return $pdf->inline('Recibo N° '.$transaccion->numero);
+    }
+
+    public function imprimirComprobante($transaccionId)
+    {
+        $transaccion=Transaccion::findOrFail($transaccionId);
+        $data = array(
+            'trans'=>$transaccion,
+            'ultimos_trans'=>$transaccion->cuentaUser->transacciones()->where('id','<',$transaccion->id)->latest()->take(3)->get()
+        );
+        $pdf = PDF::loadView('transacciones.imprimir-comprobante', $data)
+        ->setOption('page-width', '91')
+        ->setOption('page-height', '296')
+        // ->setOrientation('landscape')
+        ->setOption('margin-top', 5)
+        ->setOption('margin-bottom', 0)
+        ->setOption('margin-left', 2)
+        ->setOption('margin-right', 2);
+        return $pdf->inline('Comprobante N° '.$transaccion->numero);
+    }
+
+    public function anularTransaccion($transaccionId) {
+        $transaccion=Transaccion::findOrFail($transaccionId);
+
+        $data = array(
+            'trans' => $transaccion,
+        );
+        return view('cuentas-usuario.anularTransaccion',$data);
+    }
+    public function anularTransaccionGuardar(Request $request) {
+        $request->validate([
+            'confirmacion'=>'required',
+            'id'=>[
+                'required',
+                Rule::exists('transaccions','id')->where('estado', 'OK')
+            ]
+        ]);
+        $t=Transaccion::findOrFail($request->id);
+        try {
+            DB::beginTransaction();
+            if($t->creado_x==Auth::id()){
+                if($t->estado=='OK'){
+                    switch ($t->tipoTransaccion->tipo) {
+                        case 'RESTAR':
+                            $t->cuentaUser->valor_disponible=$t->cuentaUser->valor_disponible+$t->valor;   
+                            break;
+                        case 'SUMAR':
+                            $t->cuentaUser->valor_disponible=$t->cuentaUser->valor_disponible-$t->valor;   
+                            break;
+                        default:
+                            # code...
+                            break;
+                    }
+                    $t->cuentaUser->save();
+                    $t->valor_disponible=$t->cuentaUser->valor_disponible;
+                    $t->estado='ANULADO';
+                    $t->descripcion_estado=$request->detalle;
+                    $t->save();
+                    
+                    Session::flash('success','Transacción ANULADA.');
+                }else{
+                    Session::flash('info','Transacción no actualizado ya que el estado es ANULADO.');
+                }
+            }else{
+                Session::flash('info','La transacción no se ha actualizado, ya que parece que usted no realizó esta transacción.');
+            }
+            DB::commit();
+            return redirect()->route('cuentas-usuario.show',$t->cuentaUser->id);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Session::flash('info','Transacción no actualizado'.$th->getMessage());
+            return redirect()->back();
+        }
     }
 }
