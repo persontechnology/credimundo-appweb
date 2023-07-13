@@ -16,6 +16,7 @@ class TipoCredito extends Model
         'tasa_efectiva_anual',
         'tasa_nominal',
         'estado',
+        'tipo',
         'descripcion',
         'creado_x',
         'actualizado_x',

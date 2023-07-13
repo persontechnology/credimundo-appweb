@@ -13,7 +13,7 @@
                 </td>
                 <td scope="col">
                     <strong>Día de Pago: </strong>{{ Carbon\Carbon::parse($credito->dia_pago)->format('d'); }} <br>
-                    <strong>Fecha de Vencimiento: </strong>{{ $credito->fecha_vencimiento_c }} <br>
+                    <strong>Fecha de Vencimiento: </strong>{{ $credito->fecha_vencimiento }} <br>
                     <strong>Tasa Efectiva Anual: </strong>{{ $credito->tasa_efectiva_anual }}% <br>
                     <strong>Plazo:</strong> {{ $credito->plazo }}<br>
                     <strong>Adjudicación: </strong>{{ $credito->created_at->format('Y-m-d') }} <br>

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('tasa_efectiva_anual',7,2)->unique();
             $table->decimal('tasa_nominal',7,2);
             $table->enum('estado',['ACTIVO','INACTIVO']);
+            $table->enum('tipo',['CREDITO','PLAZO FIJO']);
             $table->string('descripcion')->nullable();
             $table->bigInteger('creado_x')->nullable();
             $table->bigInteger('actualizado_x')->nullable();

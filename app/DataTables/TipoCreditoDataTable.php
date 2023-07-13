@@ -63,6 +63,7 @@ class TipoCreditoDataTable extends DataTable
             Column::make('nombre'),
             Column::make('tasa_efectiva_anual')->title('Tasa Efectiva Anual (aplica para créditos*)'),
             Column::make('tasa_nominal'),
+            Column::make('tipo'),
             Column::make('estado'),
             Column::make('descripcion')->title('Descripción'),
         ];

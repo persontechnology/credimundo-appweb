@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Credito;
 
+use App\Models\TipoCuenta;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RqUpdate extends FormRequest
 {
@@ -22,8 +24,14 @@ class RqUpdate extends FormRequest
     public function rules(): array
     {
         $rg_decimal="/^[0-9,]+(\.\d{0,2})?$/";
+        $tc=TipoCuenta::where('codigo','AHO/VIS')->first();
         return [
-            'cuenta_user'=>'required|exists:cuenta_users,id',
+            'cuenta_user'=>[
+                'required',
+                Rule::exists('cuenta_users', 'id')->where(function($q) use ($tc) {
+                    return $q->where('tipo_cuenta_id', $tc->id);
+                })
+            ],
             'numero_cuenta'=>'nullable',
             'monto'=>'required|numeric|gt:0|regex:'.$rg_decimal,
             'plazo'=>'required',

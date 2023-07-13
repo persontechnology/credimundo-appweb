@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests\Credito;
 
+use App\Models\TipoCuenta;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RqStore extends FormRequest
 {
@@ -22,8 +25,14 @@ class RqStore extends FormRequest
     public function rules(): array
     {
         $rg_decimal="/^[0-9,]+(\.\d{0,2})?$/";
+        $tc=TipoCuenta::where('codigo','AHO/VIS')->first();
         return [
-            'cuenta_user'=>'required|exists:cuenta_users,id',
+            'cuenta_user'=>[
+                'required',
+                Rule::exists('cuenta_users', 'id')->where(function($q) use ($tc) {
+                    return $q->where('tipo_cuenta_id', $tc->id)->where('estado','ACTIVO');
+                })
+            ],
             'numero_cuenta'=>'nullable',
             'monto'=>'required|numeric|gt:0|regex:'.$rg_decimal,
             'plazo'=>'required',
@@ -53,6 +62,13 @@ class RqStore extends FormRequest
             'saldo_capital_tabla.*'=>'required|numeric|gte:0|regex:'.$rg_decimal,
             'total_pago_tabla'=>'required|array',
             'total_pago_tabla.*'=>'required|numeric|gte:0|regex:'.$rg_decimal,
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'cuenta_user.exists'=>'La cuenta de usuario no existe, el tipo de cuenta es incorrecto o la cuenta se encuentra inactiva.'
         ];
     }
 }

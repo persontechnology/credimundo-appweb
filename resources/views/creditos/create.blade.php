@@ -7,10 +7,10 @@
 <form action="{{ route('creditos.store') }}" method="POST" autocomplete="off" id="formCredito">
     @csrf
     <div class="card">
+        <div class="card-header"><small>Solo a cuentas AHORRO A LA VISTA con estado ACTIVO, se otorga los créditos.</small></div>
         <div class="card-body row">
-            <input type="hidden" name="cuenta_user" id="cuenta_user" value="{{ old('cuenta_user') }}" required>
             
-
+            <input type="hidden" name="cuenta_user" id="cuenta_user" value="{{ old('cuenta_user') }}" required>
             <div class="calculator-amortization">
 				<div class="thirty form row">
 

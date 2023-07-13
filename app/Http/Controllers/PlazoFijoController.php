@@ -46,7 +46,7 @@ class PlazoFijoController extends Controller
     {
         
         $tipo_credito=TipoCredito::where('tasa_efectiva_anual',$request->tipo_credito)->firstOrFail();
-         $credito=Credito::where('numero',$request->numero_credito)->first();
+        $credito=Credito::where('numero',$request->numero_credito)->first();
 
         if($credito){
             $request['credito_id']=$credito->id;

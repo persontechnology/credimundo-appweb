@@ -38,7 +38,7 @@
                             <i class="ph-percent"></i>
                         </div>
                         <input name="tasa_efectiva_anual" value="{{ old('tasa_efectiva_anual',$tc->tasa_efectiva_anual) }}" type="number" min="0" step="0.01" class="form-control @error('tasa_efectiva_anual') is-invalid @enderror" required>
-                        <label>Tasa efectiva anual-PARA CRÉDITOS<i class="text-danger">*</i></label>
+                        <label>Tasa efectiva anual-PARA CRÉDITOS o PLAZO FIJO<i class="text-danger">*</i></label>
                         @error('tasa_efectiva_anual')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-2 mb-1">
+                <div class="col-md-3 mb-1">
                     <div class="form-floating form-control-feedback form-control-feedback-start">
                         <div class="form-control-feedback-icon">
                             <i class="ph-toggle-left"></i>
@@ -81,9 +81,27 @@
                     </div>
                 </div>
 
-                
+                <div class="col-md-3 mb-1">
+                    <div class="form-floating form-control-feedback form-control-feedback-start">
+                        <div class="form-control-feedback-icon">
+                            <i class="ph-toggle-left"></i>
+                        </div>
+                        <select class="form-select @error('tipo') is-invalid @enderror" name="tipo" required>
+                            <option value=""></option>
+                            <option value="CREDITO" {{ old('tipo',$tc->tipo)=='CREDITO'?'selected':'' }}>CREDITO</option>
+                            <option value="PLAZO FIJO" {{ old('tipo',$tc->tipo)=='PLAZO FIJO'?'selected':'' }}>PLAZO FIJO</option>
+                        </select>
 
-                <div class="col-md-10 mb-1">
+                        <label>Tipo para<i class="text-danger">*</i></label>
+                        @error('tipo')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-12 mb-1">
                     <div class="form-floating form-control-feedback form-control-feedback-start">
                         <div class="form-control-feedback-icon">
                             <i class="ph-article"></i>
