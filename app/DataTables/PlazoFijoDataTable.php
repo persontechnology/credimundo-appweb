@@ -54,12 +54,16 @@ class PlazoFijoDataTable extends DataTable
         ->editColumn('identificacion',function($c){
             return $c->cuentaUser->user->identificacion;
         })
+        
         ->filterColumn('identificacion', function($query, $keyword) {
             $query->whereHas('cuentaUser', function($query) use ($keyword) {
                 $query->whereHas('user', function($query) use ($keyword) {
                     $query->whereRaw("identificacion like ?", ["%{$keyword}%"]);
                 });
             });
+        })
+        ->editColumn('credito_id',function($pf){
+            return $pf->credito->numero??'';
         })
         ->setRowId('id');
     }
@@ -110,6 +114,8 @@ class PlazoFijoDataTable extends DataTable
             Column::make('pago_total')->title('Pago total')->searchable(false),
             Column::make('interes_total')->title('Interes total')->searchable(false),
             Column::make('estado')->title('Estado')->searchable(false),
+            Column::make('credito_id')->title('Crédito N°')->searchable(false),
+            
         ];
     }
 

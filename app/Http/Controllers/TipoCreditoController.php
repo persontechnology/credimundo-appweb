@@ -76,6 +76,7 @@ class TipoCreditoController extends Controller
             'tasa_efectiva_anual'=>'required|regex:'.$rg_decimal.'|gt:0|unique:tipo_creditos,tasa_efectiva_anual,'.$tipoCredito->id,
             'tasa_nominal'=>'required|regex:'.$rg_decimal.'|gt:0',
             'estado'=>'required|in:ACTIVO,INACTIVO',
+            'tipo'=>'required|in:CREDITO,PLAZO FIJO',
             'descripcion'=>'nullable|string|max:255'
         ]);
         $tipoCredito->update($request->all());

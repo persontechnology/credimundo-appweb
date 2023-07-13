@@ -32,7 +32,7 @@ class CreditoController extends Controller
     public function create(CuentaUserDataTable $dataTable)
     {
         $data = array(
-            'tipo_creditos' => TipoCredito::where('estado','ACTIVO')->get(),
+            'tipo_creditos' => TipoCredito::where('estado','ACTIVO')->where('tipo','CREDITO')->get(),
             'fecha_pago'=>Carbon::today()->format('Y-m-d')
          );
         return $dataTable->render('creditos.create',$data);
@@ -91,7 +91,7 @@ class CreditoController extends Controller
     {
         $this->authorize('editar',$credito);
         $data = array(
-            'tipo_creditos' => TipoCredito::where('estado','ACTIVO')->get(),
+            'tipo_creditos' => TipoCredito::where('estado','ACTIVO')->where('tipo','CREDITO')->get(),
             'fecha_pago'=>Carbon::today()->format('Y-m-d'),
             'credito'=>$credito
          );

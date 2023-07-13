@@ -6,6 +6,7 @@ use App\DataTables\PlazoFijo\CuentaUserDataTable;
 use App\DataTables\PlazoFijo\UserDataTable;
 use App\DataTables\PlazoFijoDataTable;
 use App\Http\Requests\PlazoFijo\RqStore;
+use App\Http\Requests\PlazoFijo\RqUpdate;
 use App\Models\Credito;
 use App\Models\CuentaUser;
 use App\Models\PlazoFijo;
@@ -33,7 +34,7 @@ class PlazoFijoController extends Controller
     public function create(CuentaUserDataTable $dataTable)
     {
         $data = array(
-            'tipo_creditos' => TipoCredito::where('estado','ACTIVO')->get(),
+            'tipo_creditos' => TipoCredito::where('estado','ACTIVO')->where('tipo','PLAZO FIJO')->get(),
             'fecha_pago'=>Carbon::today()->format('Y-m-d')
          );
         return $dataTable->render('plazo-fijo.create',$data);
@@ -97,9 +98,9 @@ class PlazoFijoController extends Controller
      */
     public function edit(CuentaUserDataTable $dataTable,PlazoFijo $plazoFijo)
     {
-        $this->authorize('editar',$plazoFijo);
+        // $this->authorize('editar',$plazoFijo);
         $data = array(
-            'tipo_creditos' => TipoCredito::where('estado','ACTIVO')->get(),
+            'tipo_creditos' => TipoCredito::where('estado','ACTIVO')->where('tipo','PLAZO FIJO')->get(),
             'fecha_pago'=>Carbon::today()->format('Y-m-d'),
             'plazoFijo'=>$plazoFijo
          );
@@ -109,16 +110,22 @@ class PlazoFijoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PlazoFijo $plazoFijo)
+    public function update(RqUpdate $request, PlazoFijo $plazoFijo)
     {
-        $this->authorize('editar',$plazoFijo);
+        // $this->authorize('editar',$plazoFijo);
 
         $tipo_credito=TipoCredito::where('tasa_efectiva_anual',$request->tipo_credito)->firstOrFail();
-        $credito=Credito::where('numero',$request->numero_credito)->first();
-
-        if($credito){
-            $request['credito_id']=$credito->id;
+        
+        if($request->numero_credito){
+            $credito=Credito::where('numero',$request->numero_credito)->first();
+            if($credito){
+                $request['credito_id']=$credito->id;
+            }
+        }else{
+            $request['credito_id']=null;
         }
+
+        
         $request['tipo_credito_id']=$tipo_credito->id;
         $request['cuenta_user_id']=$request->cuenta_user;
         $request['fecha_vencimiento']=Carbon::parse($request->dia_pago)->addMonths($request->numero_cuotas);

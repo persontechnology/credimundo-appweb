@@ -30,7 +30,7 @@ class ValidarIngresoPlazoFijoSiExisteCredito implements DataAwareRule, Validatio
 
             $cuenta_user=CuentaUser::find($this->data['cuenta_user']);
             if(!$cuenta_user){
-                $fail('No existe la ceunta usuario ingresado');
+                $fail('No existe la cuenta usuario ingresado');
             }else{
                 if($credito->cuentaUser->user->id!=$cuenta_user->user->id){
                     $fail('El usuario selecionado no corresponde al usuario del crédito N°' .$credito->numero);

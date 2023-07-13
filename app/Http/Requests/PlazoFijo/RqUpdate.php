@@ -2,13 +2,12 @@
 
 namespace App\Http\Requests\PlazoFijo;
 
-use App\Models\Credito;
 use App\Models\TipoCuenta;
 use App\Rules\ValidarIngresoPlazoFijoSiExisteCredito;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class RqStore extends FormRequest
+class RqUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

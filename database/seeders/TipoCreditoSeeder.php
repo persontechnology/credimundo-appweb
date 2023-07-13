@@ -20,6 +20,7 @@ class TipoCreditoSeeder extends Seeder
                 'tasa_efectiva_anual'=>'20', //PARA CREDITOS
                 'tasa_nominal'=>'16',
                 'estado'=>'ACTIVO',
+                'tipo'=>'CREDITO'
             ]
         );
         TipoCredito::firstOrCreate(
@@ -28,6 +29,7 @@ class TipoCreditoSeeder extends Seeder
                 'tasa_efectiva_anual'=>'16', //PARA CREDITOS
                 'tasa_nominal'=>'15.60',
                 'estado'=>'ACTIVO',
+                'tipo'=>'CREDITO'
             ]
         );
         TipoCredito::firstOrCreate(
@@ -36,6 +38,7 @@ class TipoCreditoSeeder extends Seeder
                 'tasa_efectiva_anual'=>'30', //PARA CREDITOS
                 'tasa_nominal'=>'28',
                 'estado'=>'ACTIVO',
+                'tipo'=>'CREDITO'
             ]
         );
         TipoCredito::firstOrCreate(
@@ -44,6 +47,7 @@ class TipoCreditoSeeder extends Seeder
                 'tasa_efectiva_anual'=>'6.5', //PARA CREDITOS
                 'tasa_nominal'=>'6',
                 'estado'=>'ACTIVO',
+                'tipo'=>'PLAZO FIJO',
                 'descripcion'=>'APLICA PARA PLAZOS FIJOS'
             ]
         );
