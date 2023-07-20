@@ -69,6 +69,7 @@ Route::middleware(['auth', 'verified','2fa'])->group(function () {
     Route::get('cuentas-usuario/imprimir-comprobante/{idTrans}', [CuentaUserController::class,'imprimirComprobante'])->name('cuentas-usuario.imprimirComprobante'); 
     Route::get('cuentas-usuario/anular-transaccion/{idTrans}', [CuentaUserController::class,'anularTransaccion'])->name('cuentas-usuario.anularTransaccion'); 
     Route::post('cuentas-usuario/anular-transaccion-guardar', [CuentaUserController::class,'anularTransaccionGuardar'])->name('cuentas-usuario.anularTransaccionGuardar'); 
+    Route::get('cuentas-usuario/transaciones/{id}',[CuentaUserController::class,'transacciones'])->name('cuentas-usuario-transaciones');
     
     
     

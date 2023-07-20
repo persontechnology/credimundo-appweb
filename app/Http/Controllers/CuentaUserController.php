@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\CuentaUser\TransaccionDataTable;
 use App\DataTables\CuentaUser\UserDataTable;
 use App\DataTables\CuentaUserDataTable;
 use App\Http\Requests\Transaccion\StoreRq;
@@ -9,6 +10,7 @@ use App\Models\CuentaUser;
 use App\Models\TipoCuenta;
 use App\Models\TipoTransaccion;
 use App\Models\Transaccion;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -384,5 +386,14 @@ class CuentaUserController extends Controller
             Session::flash('info','Transacción no actualizado'.$th->getMessage());
             return redirect()->back();
         }
+    }
+
+    public function transacciones(TransaccionDataTable $dataTable, $cuentaUserId) {
+        $cuentaUser=CuentaUser::findOrFail($cuentaUserId);
+        $data = array(
+            'cuentaUser'=>$cuentaUser
+        );
+       return $dataTable->with('cuentaUserId',$cuentaUser->id)->render('cuentas-usuario.transacciones',$data);
+
     }
 }

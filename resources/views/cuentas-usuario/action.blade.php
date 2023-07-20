@@ -11,9 +11,9 @@
                 Solicitud Apertura de cuenta
             </a>
             
-            <a href="{{ route('cuentas-usuario.transacciones-pdf',$cu->id) }}" class="dropdown-item">
-                <i class="ph ph-file-pdf me-2"></i>
-                Transacciones PDF
+            <a href="{{ route('cuentas-usuario-transaciones',$cu->id) }}" class="dropdown-item">
+                <i class="ph ph-repeat me-2"></i>
+                Transacciones del socio
             </a>
             
             <div class="dropdown-header">Opciones</div>

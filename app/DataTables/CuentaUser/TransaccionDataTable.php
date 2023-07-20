@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataTables;
+namespace App\DataTables\CuentaUser;
 
 use App\Models\Transaccion;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
@@ -23,7 +23,7 @@ class TransaccionDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addColumn('action', function($t){
-            return view('transacciones.action',['t'=>$t])->render();
+            return view('cuentas-usuario.action-transacion',['trans'=>$t])->render();
         })
         
         ->addColumn('identificacion_user',function($t){
@@ -68,7 +68,12 @@ class TransaccionDataTable extends DataTable
      */
     public function query(Transaccion $model): QueryBuilder
     {
-        return $model->newQuery()->latest();
+        if($this->cuentaUserId){
+            return $model->newQuery()->where('cuenta_user_id',$this->cuentaUserId)->latest();
+        }else{
+            return null;
+        }
+        
     }
 
     /**

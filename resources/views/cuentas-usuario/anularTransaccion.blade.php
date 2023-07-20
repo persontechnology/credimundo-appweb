@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('breadcrumbs')
-{{ Breadcrumbs::render('transacciones.edit',$trans) }}
+{{ Breadcrumbs::render('cuentas-usuario.anularTransaccion',$trans) }}
 @endsection
 @section('content')
 

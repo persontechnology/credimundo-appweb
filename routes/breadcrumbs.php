@@ -84,6 +84,16 @@ Breadcrumbs::for('cuentas-usuario.show', function (BreadcrumbTrail $trail, $cu) 
     $trail->parent('cuentas-usuario.index');
     $trail->push('Detalle', route('cuentas-usuario.show', $cu->id));
 });
+Breadcrumbs::for('cuentas-usuario.anularTransaccion', function (BreadcrumbTrail $trail, $trans) {
+    $trail->parent('cuentas-usuario.show',$trans->cuentaUser);
+    $trail->push('Anular transacción', route('cuentas-usuario.anularTransaccion', $trans->id));
+});
+
+Breadcrumbs::for('cuentas-usuario-transaciones', function (BreadcrumbTrail $trail, $cu) {
+    $trail->parent('cuentas-usuario.index');
+    $trail->push('Transaciones del socio', route('cuentas-usuario-transaciones', $cu->id));
+});
+
 
 
 // transacciones
