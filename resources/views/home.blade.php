@@ -4,26 +4,45 @@
 @endsection
 
 @section('content')
-<!-- Content area -->
-<div class="d-flex justify-content-center align-items-center">
-    <div class="login-form" action="index.html">
-        <div class="card mb-0">
-            <div class="card-body">
-                <div class="text-center">
-                    <div class="card-img-actions d-inline-block mb-3">
-                        <img class="rounded-circle" src="{{ asset('img/logo-light.svg') }}" width="260" height="260" alt="">
-                        
-                    </div>
-                </div>
 
-                <div class="text-center mb-3">
-                    <h6 class="mb-0">MG.ING DAVID CRIOLLO</h6>
-                    <span class="text-muted">PRESIDENTE</span>
-                </div>
-                
-            </div>
-        </div>
+<div class="card">
+    <div class="card-header">
+        CRÉDITOS PENDIENTE, ATRASADO
     </div>
+    <div class="card-body">
+        @if ($tablas_creditos->count()>0)
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">N° crédito</th>
+                            <th scope="col">Cuenta usuario</th>
+                            <th scope="col">Identificación</th>
+                            <th scope="col">Apellidos & Nombres</th>
+                            <th scope="col">Día de pago</th>
+                            <th scope="col">Pago mensual</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($tablas_creditos as $tc)
+                        <tr class="">
+                            <td scope="row">{{ $tc->credito->numero }}</td>
+                            <td>{{ $tc->credito->cuentaUser->numero_cuenta }}</td>
+                            <td>{{ $tc->credito->cuentaUser->user->identificacion }}</td>
+                            <td>{{ $tc->credito->cuentaUser->user->apellidos_nombres }}</td>
+                            <td>{{ $tc->fecha_pago }}</td>
+                            <td>{{ $tc->pago_mensual }}</td>
+                            <td>{{ $tc->estado }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            
+        @endif
+    </div>
+
 </div>
-<!-- /content area -->
+
 @endsection

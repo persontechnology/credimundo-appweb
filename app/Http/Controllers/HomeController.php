@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Clases\ValidadorEc;
+use App\Models\TablaCredito;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +26,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $fechaActual=Carbon::now();
+        $tableCreditos=TablaCredito::where('fecha_pago','<=',$fechaActual)
+        ->where(function($query)
+                {
+                    $query->where('estado','PENDIENTE')->orWhere('estado','ATRASADO');
+
+                })->get();
+        $data = array(
+            'tablas_creditos'=>$tableCreditos
+        );
+        return view('home',$data);
     }
 
     public function validarec(Request $request)

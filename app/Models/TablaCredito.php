@@ -40,4 +40,9 @@ class TablaCredito extends Model
         $mes = $meses[($fecha->format('n')) - 1];
         return $fecha->format('d') . ',' . $mes . ' ' . $fecha->format('Y');
     }
+
+    public function credito()
+    {
+        return $this->belongsTo(Credito::class,'credito_id');
+    }
 }
