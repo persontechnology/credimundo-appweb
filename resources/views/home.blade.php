@@ -7,7 +7,7 @@
 
 <div class="card">
     <div class="card-header">
-        CRÉDITOS PENDIENTE, ATRASADO
+        CRÉDITOS PENDIENTE, ATRASADO, <small>(Vencidos o que venceran en dos días)</small>
     </div>
     <div class="card-body">
         @if ($tablas_creditos->count()>0)

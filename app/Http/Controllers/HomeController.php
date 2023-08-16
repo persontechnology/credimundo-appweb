@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $fechaActual=Carbon::now();
+        $fechaActual=Carbon::now()->addDays(2);
         $tableCreditos=TablaCredito::where('fecha_pago','<=',$fechaActual)
         ->where(function($query)
                 {
