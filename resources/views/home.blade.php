@@ -15,6 +15,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th scope="col">Mensaje</th>
                             <th scope="col">N° crédito</th>
                             <th scope="col">Cuenta usuario</th>
                             <th scope="col">Identificación</th>
@@ -27,7 +28,14 @@
                     <tbody>
                         @foreach ($tablas_creditos as $tc)
                         <tr class="">
+                            <td scope="row" >
+                                
+                                <a href="">
+                                    <a href="https://api.whatsapp.com/send?phone={{ $tc->credito->cuentaUser->user->telefono }}&text=Estimado(a) Socio(a). {{ $tc->credito->cuentaUser->user->apellidos_nombres }}, le recordamos que su cuota de crédito de ${{ $tc->pago_mensual }} vence el {{ $tc->fecha_pago }}. Evite cargos adicionales realizando el pago a tiempo. Gracias, de parte de CREDIMUNDO.">Enviar mensaje por WhatsApp</a>
+                                </a>
+                            </td>
                             <td scope="row">{{ $tc->credito->numero }}</td>
+
                             <td>{{ $tc->credito->cuentaUser->numero_cuenta }}</td>
                             <td>{{ $tc->credito->cuentaUser->user->identificacion }}</td>
                             <td>{{ $tc->credito->cuentaUser->user->apellidos_nombres }}</td>
