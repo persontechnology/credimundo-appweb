@@ -73,15 +73,18 @@
                 <th>Estado</th>
             </tr>
             @foreach ($credito->tablaCreditos as $tc)
-            <tr class="">
+            <tr>
                 <td>
                     <form action="{{ route('creditos.tabla-credito-pagar') }}" method="POST" class="m-0 p-0">
+                        @php
+                            $mesActual=\Carbon\Carbon::parse($tc->fecha_pago)->format('m') === \Carbon\Carbon::now()->format('m');
+                        @endphp
                         @csrf
                         <small>Valor {{ $tc->montoCobrarTablaCredito() }}</small>
                         <div class="input-group input-group-sm">
                             <input type="hidden" name="tablaCreditoId" value="{{ $tc->id }}" >
                             <input type="number" step="0.01" name="valor" class="form-control">
-                            <button class="btn btn-outline-secondary btn-sm" type="submit"><i class="ph ph-floppy-disk"></i></button>
+                            <button class="btn btn-{{ $mesActual===true?'success':'primary' }} btn-sm" type="submit"><i class="ph ph-floppy-disk"></i></button>
                         </div>
                     </form>
                     @if ($tc->transacciones->count()>0)
@@ -98,7 +101,8 @@
                 <td>{{ $tc->total_de_pago }}</td>
                 <td>{{ $tc->saldo_capital }}</td>
                 <td>{{ $tc->total }}</td>
-                <td>{{ $tc->estado }}</td>
+                
+                <td class="{{ $tc->estado==='PAGADO'?'bg-danger':'bg-info' }} "><strong>{{ $tc->estado }}</strong></td>
             </tr>    
             @endforeach
             
