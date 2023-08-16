@@ -30,9 +30,11 @@
                         <tr class="">
                             <td scope="row" >
                                 
+                                @if ($tc->credito->cuentaUser->user->celular)
                                 <a href="">
-                                    <a href="https://api.whatsapp.com/send?phone={{ $tc->credito->cuentaUser->user->telefono }}&text=Estimado(a) Socio(a). {{ $tc->credito->cuentaUser->user->apellidos_nombres }}, le recordamos que su cuota de crédito de ${{ $tc->pago_mensual }} vence el {{ $tc->fecha_pago }}. Evite cargos adicionales realizando el pago a tiempo. Gracias, de parte de CREDIMUNDO.">Enviar mensaje por WhatsApp</a>
+                                    <a href="https://api.whatsapp.com/send?phone={{ $tc->credito->cuentaUser->user->celular }}&text=Estimado(a) Socio(a). {{ $tc->credito->cuentaUser->user->apellidos_nombres }}, le recordamos que su cuota de crédito de ${{ $tc->pago_mensual }} vence el {{ $tc->fecha_pago }}. Evite cargos adicionales realizando el pago a tiempo. Gracias, de parte de CREDIMUNDO.">Enviar mensaje por WhatsApp</a>
                                 </a>
+                                @endif
                             </td>
                             <td scope="row">{{ $tc->credito->numero }}</td>
 
