@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="card-body">
-            @include('creditos.tabla-credito',['credito'=>$credito])
+            @include('creditos.tabla-credito-pagos',['credito'=>$credito])
         </div>
     </div>
 

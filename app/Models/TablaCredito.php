@@ -45,4 +45,14 @@ class TablaCredito extends Model
     {
         return $this->belongsTo(Credito::class,'credito_id');
     }
+
+    public function montoCobrarTablaCredito()
+    {
+        $valor= $this->pago_mensual-$this->hasMany(Transaccion::class, 'tabla_credito_id')->where('estado','OK')->sum('valor');
+        return number_format($valor,2,'.', '');
+    }
+
+    public function transacciones() {
+        return $this->hasMany(Transaccion::class, 'tabla_credito_id')->where('estado','OK');
+    }
 }

@@ -59,6 +59,10 @@ class TransaccionController extends Controller
         try {
             DB::beginTransaction();
             $t=Transaccion::create($data);
+
+            // pago de credito automatico
+            
+
             DB::commit();
             Session::flash('success','Transacción realizado');
             return redirect()->route('transacciones.show',$t);

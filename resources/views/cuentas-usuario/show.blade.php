@@ -7,13 +7,12 @@
     {{-- infromacion de socio --}}
     <div class="alert alert-dark" role="alert">
         <div class="row justify-content-center align-items-center g-2">
-            <div class="col-md-4">
-                <strong>Cuenta: </strong> {{ $cuentaUser->tipoCuenta->codigo }}, {{ $cuentaUser->numero_cuenta }}
+            <div class="col-md-6">
+                <strong>Cuenta: </strong> {{ $cuentaUser->tipoCuenta->codigo }}, {{ $cuentaUser->numero_cuenta }} <br>
+                <strong>DISPONIBLE {{ $cuentaUser->valor_disponible }}</strong>
             </div>
-            <div class="col-md-4">
-                <strong>Socio: </strong>{{ $cuentaUser->user->apellidos_nombres }}
-            </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
+                <strong>Socio: </strong>{{ $cuentaUser->user->apellidos_nombres }} <br>
                 <strong>Cédula/Ruc: </strong>{{ $cuentaUser->user->identificacion }}
             </div>
             <div class="col-md-1">

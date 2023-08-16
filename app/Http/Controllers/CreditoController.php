@@ -8,8 +8,12 @@ use App\DataTables\CreditoDataTable;
 use App\Http\Requests\Credito\RqStore;
 use App\Http\Requests\Credito\RqUpdate;
 use App\Models\Credito;
+use App\Models\PagoCredito;
 use App\Models\TablaCredito;
 use App\Models\TipoCredito;
+use App\Models\TipoTransaccion;
+use App\Models\Transaccion;
+use App\Rules\ValidarTransaccionResta;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -250,5 +254,53 @@ class CreditoController extends Controller
         $credito->save();
         Session::flash('success','Crédito # '.$credito->numero.' cambiado estado a: '.$credito->estado);
         return redirect()->route('creditos.show', $credito->id);
+    }
+
+    public function tablaCreditoPagar(Request $request) {
+        $tabla_credito=TablaCredito::findOrFail($request->tablaCreditoId);
+        $tipoTransaccion=TipoTransaccion::where('codigo','PAG/CRE')->first();
+        $request['tipoTransaccion']=$tipoTransaccion->id;
+        $request['cuentaUser']=$tabla_credito->credito->cuentaUser->id;
+
+
+        $request->validate([
+            'valor'=>[
+                'required',
+                'numeric',
+                'gt:0',
+                'lte:'.$tabla_credito->montoCobrarTablaCredito(),
+                new ValidarTransaccionResta
+            ],
+        ]);
+        
+        $data = array(
+            'valor'=>$request->valor,
+            'estado'=>'OK',
+            'detalle'=>'DEBITO AUTOMATICO DE TABLA CREDITO ID '.$tabla_credito->id,
+            'cuenta_user_id'=>$tabla_credito->credito->cuentaUser->id,
+            'tipo_transaccion_id'=>$tipoTransaccion->id,
+            'quien_realiza_transaccion'=>'sistema',
+            'identificacion_otra_persona'=>null,
+            'nombre_otra_persona'=>null,
+            'tabla_credito_id'=>$tabla_credito->id
+        );
+        try {
+            DB::beginTransaction();
+            $t=Transaccion::create($data);
+            if($tabla_credito->montoCobrarTablaCredito()<=0){
+                $tabla_credito->estado='PAGADO';
+                
+            }else{
+                $tabla_credito->estado='PENDIENTE';
+            }
+            $tabla_credito->save();
+            DB::commit();
+            Session::flash('success','Transacción realizado');
+            return redirect()->route('creditos.show',$tabla_credito->credito->id);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Session::flash('info','Transacción no realizado'.$th->getMessage());
+            return redirect()->back()->withInput();
+        }
     }
 }

@@ -357,7 +357,8 @@ class CuentaUserController extends Controller
                 if($t->estado=='OK'){
                     switch ($t->tipoTransaccion->tipo) {
                         case 'RESTAR':
-                            $t->cuentaUser->valor_disponible=$t->cuentaUser->valor_disponible+$t->valor;   
+                            $t->cuentaUser->valor_disponible=$t->cuentaUser->valor_disponible+$t->valor; 
+                            
                             break;
                         case 'SUMAR':
                             $t->cuentaUser->valor_disponible=$t->cuentaUser->valor_disponible-$t->valor;   

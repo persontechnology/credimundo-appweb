@@ -21,7 +21,9 @@ class Transaccion extends Model
         'tipo_transaccion_id',
         'quien_realiza_transaccion',
         'identificacion_otra_persona',
-        'nombre_otra_persona'
+        'nombre_otra_persona',
+        'tabla_credito_id',
+        'tabla_plazo_fijo_id'
     ];
 
     public static function boot()
@@ -127,5 +129,6 @@ class Transaccion extends Model
     {
         return $this->belongsTo(User::class, 'actualizado_x');
     }
+    
     
 }

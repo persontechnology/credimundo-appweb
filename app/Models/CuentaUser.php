@@ -68,7 +68,7 @@ class CuentaUser extends Model
     // Deivid, una c uentaUser tiene varias transacciones
     public function transacciones()
     {
-        return $this->hasMany(Transaccion::class, 'cuenta_user_id')->where('estado','ok');
+        return $this->hasMany(Transaccion::class, 'cuenta_user_id')->where('estado','OK');
     }
 
 }

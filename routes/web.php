@@ -88,6 +88,7 @@ Route::middleware(['auth', 'verified','2fa'])->group(function () {
     Route::get('creditos/pagare/{id}', [CreditoController::class,'pagare'])->name('creditos.pagare');
     Route::get('creditos/garantes/{id}', [CreditoController::class,'garantes'])->name('creditos.garantes');
     Route::post('creditos/garantes/actualizar', [CreditoController::class,'garantesActualizar'])->name('creditos.garantes-actualizar');
+    Route::post('creditos/tabla-credito-pagar', [CreditoController::class,'tablaCreditoPagar'])->name('creditos.tabla-credito-pagar');
 
     // plazo fijo
     Route::resource('plazo-fijo', PlazoFijoController::class);
