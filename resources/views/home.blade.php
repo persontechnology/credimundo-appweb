@@ -22,6 +22,7 @@
                             <th scope="col">Apellidos & Nombres</th>
                             <th scope="col">Día de pago</th>
                             <th scope="col">Pago mensual</th>
+                            <th scope="col">Pendiente</th>
                             <th scope="col">Estado</th>
                         </tr>
                     </thead>
@@ -43,6 +44,7 @@
                             <td>{{ $tc->credito->cuentaUser->user->apellidos_nombres }}</td>
                             <td>{{ $tc->fecha_pago }}</td>
                             <td>{{ $tc->pago_mensual }}</td>
+                            <td class="{{ $tc->montoCobrarTablaCredito()>0?'bg-danger':'' }}">{{ $tc->montoCobrarTablaCredito() }}</td>
                             <td>{{ $tc->estado }}</td>
                         </tr>
                         @endforeach
@@ -54,5 +56,23 @@
     </div>
 
 </div>
+<div id="myDiv">
+
+</div>
 
 @endsection
+
+@prepend('scriptsHeader')
+    <script src="{{ asset('assets/js/floating-wpp.min.js') }}"></script>
+@prepend
+
+@push('scripts')
+    
+    <script>
+        $('#myDiv').floatingWhatsApp({
+            phone: '5491133359850',
+            popupMessage: 'Hello, how can we help you?',
+            showPopup: true
+        });
+    </script>
+@endpush
