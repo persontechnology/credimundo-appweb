@@ -15,7 +15,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Mensaje</th>
                             <th scope="col">N° crédito</th>
                             <th scope="col">Cuenta usuario</th>
                             <th scope="col">Identificación</th>
@@ -30,12 +29,9 @@
                         @foreach ($tablas_creditos as $tc)
                         <tr class="">
                             <td scope="row" >
-                                
-                                @if ($tc->credito->cuentaUser->user->celular)
-                                <a href="">
-                                    <a href="https://api.whatsapp.com/send?phone={{ $tc->credito->cuentaUser->user->celular }}&text=Estimado(a) Socio(a). {{ $tc->credito->cuentaUser->user->apellidos_nombres }}, le recordamos que su cuota de crédito de ${{ $tc->pago_mensual }} vence el {{ $tc->fecha_pago }}. Evite cargos adicionales realizando el pago a tiempo. Gracias, de parte de CREDIMUNDO.">Enviar mensaje por WhatsApp</a>
-                                </a>
-                                @endif
+                                <small>
+                                    Estimado(a) Socio(a). {{ $tc->credito->cuentaUser->user->apellidos_nombres }}, le recordamos que su cuota de crédito de ${{ $tc->montoCobrarTablaCredito() }} vence el {{ $tc->fecha_pago }}. Evite recargos adicionales realizando el pago a tiempo. Gracias, de parte de CREDIMUNDO.
+                                </small>
                             </td>
                             <td scope="row">{{ $tc->credito->numero }}</td>
 
@@ -56,23 +52,5 @@
     </div>
 
 </div>
-<div id="myDiv">
-
-</div>
 
 @endsection
-
-@prepend('scriptsHeader')
-    <script src="{{ asset('assets/js/floating-wpp.min.js') }}"></script>
-@prepend
-
-@push('scripts')
-    
-    <script>
-        $('#myDiv').floatingWhatsApp({
-            phone: '5491133359850',
-            popupMessage: 'Hello, how can we help you?',
-            showPopup: true
-        });
-    </script>
-@endpush
