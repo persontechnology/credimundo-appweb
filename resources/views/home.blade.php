@@ -28,10 +28,8 @@
                     <tbody>
                         @foreach ($tablas_creditos as $tc)
                         <tr class="">
-                            <td scope="row" >
-                                <small>
-                                    Estimado(a) Socio(a). {{ $tc->credito->cuentaUser->user->apellidos_nombres }}, le recordamos que su cuota de crédito de ${{ $tc->montoCobrarTablaCredito() }} vence el {{ $tc->fecha_pago }}. Evite recargos adicionales realizando el pago a tiempo. Gracias, de parte de CREDIMUNDO.
-                                </small>
+                            <td scope="row">
+                                <button type="button" class="btn btn-success" data-bs-popup="popover" title="Enviar este mensaje por whatsapp" data-bs-content="Estimado(a) Socio(a). {{ $tc->credito->cuentaUser->user->apellidos_nombres }}, le recordamos que su cuota de crédito de ${{ $tc->montoCobrarTablaCredito() }} vence el {{ $tc->fecha_pago }}. Evite recargos adicionales realizando el pago a tiempo. Gracias, de parte de CREDIMUNDO.">WhatsApp <i class="ph ph-whatsapp-logo ms-2"></i></button>
                             </td>
                             <td scope="row">{{ $tc->credito->numero }}</td>
 
