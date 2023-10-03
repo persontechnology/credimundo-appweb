@@ -12,9 +12,10 @@
     <div class="card-body">
         @if ($tablas_creditos->count()>0)
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-bordered table-sm">
                     <thead>
                         <tr>
+                            <th scope="col">WhatsApp</th>
                             <th scope="col">N° crédito</th>
                             <th scope="col">Cuenta usuario</th>
                             <th scope="col">Identificación</th>
