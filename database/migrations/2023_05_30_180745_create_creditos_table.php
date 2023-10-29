@@ -20,6 +20,8 @@ return new class extends Migration
             $table->decimal('solca')->default(0);
             $table->string('interes_certificado_plazo_fijo');
             $table->decimal('total_certificado_plazo_fijo');
+            $table->integer('seguro_credito');
+            $table->decimal('total_seguro_credito',8,2);
             $table->decimal('neto_recibir');
             $table->date('dia_pago')->nullable();
             $table->date('fecha_vencimiento')->nullable();

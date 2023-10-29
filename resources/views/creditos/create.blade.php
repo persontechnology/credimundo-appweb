@@ -65,7 +65,7 @@
                     
 
                     
-                    <div class="col-md-8 mb-1">
+                    <div class="col-md-4 mb-1">
                         <div class="form-floating form-control-feedback form-control-feedback-start">
                             <div class="form-control-feedback-icon">
                                 <i class="ph-credit-card"></i>
@@ -80,6 +80,25 @@
                         </div>
                     </div>
                     
+                    <div class="col-md-4 mb-1">
+                        <div class="form-floating form-control-feedback form-control-feedback-start">
+                            <div class="form-control-feedback-icon">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <select class="accrue-rate_compare form-select @error('seguro_credito') is-invalid @enderror" name="seguro_credito" id="seguro_credito" required>
+                                <option value="5" {{ old('seguro_credito')=='5'?'selected':'' }}>5%</option>
+                                <option value="4" {{ old('seguro_credito')=='4'?'selected':'' }}>4%</option>
+                                <option value="3" {{ old('seguro_credito')=='3'?'selected':'' }}>3%</option>
+                            </select>
+                            <label for="seguro_credito">Seguro de crédito<i class="text-danger">*</i></label>
+                            @error('seguro_credito')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+
                     <div class="col-md-4 mb-1">
                         <div class="form-floating form-control-feedback form-control-feedback-start">
                             <div class="form-control-feedback-icon">
@@ -162,6 +181,7 @@
                                     <th scope="col">Pago Total:</th>
                                     <th scope="col">Interés Total:</th>
                                     <th scope="col">Total Certificado Plazo Fijo</th>
+                                    <th scope="col">Total Seguro Crédito</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -172,6 +192,7 @@
                                     <td> <input type="hidden" name="pago_total" value="{{ old("pago_total") }}" id="pago_total" required> <div id="pago_total_Text"></div></td>
                                     <td> <input type="hidden" name="interes_total" value="{{ old("interes_total") }}" id="interes_total" required> <div id="interes_total_Text"></div></td>
                                     <td> <input type="hidden" name="total_certificado_plazo_fijo" value="{{ old("total_certificado_plazo_fijo") }}" id="total_certificado_plazo_fijo" required> <div id="total_certificado_plazo_fijo_text"></div></td>
+                                    <td> <input type="hidden" name="total_seguro_credito" value="{{ old("total_seguro_credito") }}" id="total_seguro_credito" required> <div id="total_seguro_credito_text"></div></td>
                                 </tr>
                                 
                             </tbody>
@@ -231,19 +252,27 @@
                 var ahorro_programado=$( "#interes_certificado_plazo_fijo option:selected" ).val();
                 var total_certificado_plazo_fijo=parseFloat((ahorro_programado*data.original_amount)/100).toFixed(2);
                 
-                $('#neto_recibir').val(parseFloat(data.original_amount-total_certificado_plazo_fijo).toFixed(2));
+                var seguro_credito=$( "#seguro_credito option:selected" ).val();
+                var total_seguro_credito=parseFloat((seguro_credito*data.original_amount)/100).toFixed(2);
+                
+                $('#neto_recibir').val(parseFloat(data.original_amount-total_seguro_credito-total_certificado_plazo_fijo).toFixed(2));
                 $('#pago_mensual').val(parseFloat(data.payment_amount_formatted).toFixed(2));
                 $('#numero_cuotas').val(data.num_payments);
                 $('#pago_total').val(data.total_payments_formatted);
                 $('#interes_total').val(data.total_interest_formatted);
                 $('#total_certificado_plazo_fijo').val(total_certificado_plazo_fijo);
+                $('#total_seguro_credito').val(total_seguro_credito);
                 
-                $('#neto_recibir_Text').html(parseFloat(data.original_amount-total_certificado_plazo_fijo).toFixed(2));
+                $('#neto_recibir_Text').html(parseFloat(data.original_amount-total_seguro_credito-total_certificado_plazo_fijo).toFixed(2));
                 $('#pago_mensual_Text').html(parseFloat(data.payment_amount_formatted).toFixed(2));
                 $('#numero_cuotas_Text').html(data.num_payments);
                 $('#pago_total_Text').html(data.total_payments_formatted);
                 $('#interes_total_Text').html(data.total_interest_formatted);
                 $('#total_certificado_plazo_fijo_text').html(total_certificado_plazo_fijo);
+                $('#total_seguro_credito_text').html(total_seguro_credito);
+                
+
+                
             }
         });
         

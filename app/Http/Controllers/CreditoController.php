@@ -303,4 +303,22 @@ class CreditoController extends Controller
             return redirect()->back()->withInput();
         }
     }
+
+    public function seguroCredito($creditoId) {
+        $credito=Credito::findOrFail($creditoId);
+      
+        
+        $title='SEGURO DE CRÉDITO';
+        $headerHtml = view()->make('pdf.header',['title'=>$title])->render();
+        $footerHtml = view()->make('pdf.footer')->render();
+        $data = array(
+            'credito'=>$credito,
+            'title'=>$title
+        );
+        
+        $pdf = PDF::loadView('creditos.seguro-credito', $data)
+        ->setOption('header-html', $headerHtml)
+        ->setOption('footer-html', $footerHtml);
+        return $pdf->inline($title );
+    }
 }

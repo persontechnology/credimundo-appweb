@@ -28,6 +28,10 @@
                 <i class="ph-file-pdf me-2"></i>
                 Pagare a la orden
             </a>
+            <a href="{{ route('creditos.seguro-credito',$credito) }}" target="_blank" class="dropdown-item">
+                <i class="ph-file-pdf me-2"></i>
+                Seguro de crédito
+            </a>
         </div>
     </div>
 

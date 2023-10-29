@@ -17,6 +17,8 @@ class Credito extends Model
         'solca',
         'interes_certificado_plazo_fijo',
         'total_certificado_plazo_fijo',
+        'seguro_credito',
+        'total_seguro_credito',
         'neto_recibir',
         'dia_pago',
         'numero_cuotas',

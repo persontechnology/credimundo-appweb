@@ -35,6 +35,7 @@
                 <th scope="col">Pago Total:</th>
                 <th scope="col">Interés Total:</th>
                 <th scope="col">Total Certificado plazo fijo</th>
+                <th scope="col">Total Seguro Crédito</th>
             </tr>
         </thead>
         <tbody>
@@ -45,6 +46,7 @@
                 <td>{{ $credito->pago_total }}</td>
                 <td>{{ $credito->interes_total }}</td>
                 <td>{{ $credito->total_certificado_plazo_fijo }}</td>
+                <td>{{ $credito->total_seguro_credito }}</td>
             </tr>
             
         </tbody>

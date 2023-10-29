@@ -86,6 +86,7 @@ Route::middleware(['auth', 'verified','2fa'])->group(function () {
     Route::post('creditos/actualizar-estado', [CreditoController::class,'actualizarEstado'])->name('creditos.actualizar-estado');
     Route::get('creditos/tabla-amortizacion/{id}', [CreditoController::class,'tablaAmortizacion'])->name('creditos.tabla-amortizacion');
     Route::get('creditos/pagare/{id}', [CreditoController::class,'pagare'])->name('creditos.pagare');
+    Route::get('creditos/seguro-credito/{id}', [CreditoController::class,'seguroCredito'])->name('creditos.seguro-credito');
     Route::get('creditos/garantes/{id}', [CreditoController::class,'garantes'])->name('creditos.garantes');
     Route::post('creditos/garantes/actualizar', [CreditoController::class,'garantesActualizar'])->name('creditos.garantes-actualizar');
     Route::post('creditos/tabla-credito-pagar', [CreditoController::class,'tablaCreditoPagar'])->name('creditos.tabla-credito-pagar');
