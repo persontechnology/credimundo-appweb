@@ -381,10 +381,15 @@
     <li class="nav-item nav-item-dropdown-lg dropdown ms-lg-2">
         <a href="#" class="navbar-nav-link align-items-center rounded-pill p-1" data-bs-toggle="dropdown">
             <div class="status-indicator-container">
-                <img src="{{ route('usuarios.ver-archivo',[Auth::id(),'foto']) }}" class="w-32px h-32px rounded-pill" alt="">
+                @if (Auth::user()->foto)
+                    <img src="{{ route('usuarios.ver-archivo',[Auth::id(),'foto']) }}" class="w-32px h-32px rounded-pill" alt="">
+                @else
+                    <img src="{{ asset('img/perfil.png') }}" class="w-32px h-32px rounded-pill" alt="">
+                @endif
+                
                 <span class="status-indicator bg-success"></span>
             </div>
-            <span class="d-none d-lg-inline-block mx-lg-2">{{ Auth::user()->name }}</span>
+            <span class="d-none d-lg-inline-block mx-lg-2">{{ Auth::user()->apellidos_nombres }}</span>
         </a>
 
         <div class="dropdown-menu dropdown-menu-end">

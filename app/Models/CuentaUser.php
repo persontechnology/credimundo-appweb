@@ -71,4 +71,11 @@ class CuentaUser extends Model
         return $this->hasMany(Transaccion::class, 'cuenta_user_id')->where('estado','OK');
     }
 
+    // Deivid, una cuentaUser tiene varias transaciones en estado ok
+    // obtener solo los ultimos 10 transacciones, es para mostrar solo para el socio
+    public function transaccionesSocio()
+    {
+        return $this->hasMany(Transaccion::class, 'cuenta_user_id')->where('estado','OK')->latest();
+    }
+
 }

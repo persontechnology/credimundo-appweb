@@ -104,6 +104,17 @@
                     </li>
                 @endhasanyrole
 
+
+                <li class="nav-item">
+                    <a href="{{ route('mis-cuentas') }}" class="nav-link {{ Route::is('mis-cuentas*')?'active':'' }}">
+                        <i class="ph-credit-card"></i>
+                        <span>
+                            Mis cuentas
+                        </span>
+                    </a>
+                </li>
+
+
             </ul>
         </div>
         <!-- /main navigation -->

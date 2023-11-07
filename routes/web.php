@@ -5,6 +5,7 @@ use App\Http\Controllers\CheckTwoFactorCotroller;
 use App\Http\Controllers\CreditoController;
 use App\Http\Controllers\CuentaUserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MisCuentasController;
 use App\Http\Controllers\PlazoFijoController;
 use App\Http\Controllers\TipoCreditoController;
 use App\Http\Controllers\TipoCuentaController;
@@ -99,4 +100,13 @@ Route::middleware(['auth', 'verified','2fa'])->group(function () {
 
     // caja
     Route::resource('caja', CajaController::class);
+
+
+
+    // PARA EL SOSIO
+    // mis cuentas
+    Route::get('mis-cuentas',[MisCuentasController::class,'index'])->name('mis-cuentas');
+
+
+
 });

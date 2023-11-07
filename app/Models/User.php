@@ -111,5 +111,11 @@ class User extends Authenticatable
             return false;
         }
     }
+
+    // un usuario tiene varias cuentas activas
+    public function cuentaUser()
+    {
+        return $this->hasMany(CuentaUser::class)->where('estado','ACTIVO');
+    }
     
 }
