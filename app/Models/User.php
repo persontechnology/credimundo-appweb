@@ -113,9 +113,25 @@ class User extends Authenticatable
     }
 
     // un usuario tiene varias cuentas activas
+    // este es para la vista del socio
     public function cuentaUser()
     {
         return $this->hasMany(CuentaUser::class)->where('estado','ACTIVO');
+    }
+
+    // Deivid, un usuario tiene varios creditos en estado entregado
+    // este es para vista de socios
+    public function creditos()
+    {
+        return $this->hasManyThrough(
+            Credito::class,
+            CuentaUser::class,
+            'user_id', // Foreign key on the cuenta_users table...
+            'cuenta_user_id', // Foreign key on the deployments table...
+            'id', // Local key on the projects table...
+            'id' // Local key on the environments table...
+        );
+        // ->where('creditos.estado','ENTREGADO');
     }
     
 }

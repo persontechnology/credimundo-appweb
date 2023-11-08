@@ -5,6 +5,7 @@ use App\Http\Controllers\CheckTwoFactorCotroller;
 use App\Http\Controllers\CreditoController;
 use App\Http\Controllers\CuentaUserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MisCreditosController;
 use App\Http\Controllers\MisCuentasController;
 use App\Http\Controllers\PlazoFijoController;
 use App\Http\Controllers\TipoCreditoController;
@@ -106,6 +107,11 @@ Route::middleware(['auth', 'verified','2fa'])->group(function () {
     // PARA EL SOSIO
     // mis cuentas
     Route::get('mis-cuentas',[MisCuentasController::class,'index'])->name('mis-cuentas');
+    Route::post('enviar-mas-movimietos-correo',[MisCuentasController::class,'enviarMasMovimientoCorreo'])->name('enviar-mas-movimietos-correo');
+    // mis creditos
+    Route::get('mis-creditos',[MisCreditosController::class,'index'])->name('mis-creditos');
+    
+
 
 
 

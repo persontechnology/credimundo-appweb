@@ -115,6 +115,16 @@
                 </li>
 
 
+                <li class="nav-item">
+                    <a href="{{ route('mis-creditos') }}" class="nav-link {{ Route::is('mis-creditos*')?'active':'' }}">
+                        <i class="ph-currency-dollar"></i>
+                        <span>
+                            Mis créditos
+                        </span>
+                    </a>
+                </li>
+
+
             </ul>
         </div>
         <!-- /main navigation -->
