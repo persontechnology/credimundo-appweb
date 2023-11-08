@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('breadcrumbs')
-{{ Breadcrumbs::render('home') }}
+{{ Breadcrumbs::render('mis-cuentas') }}
 @endsection
 
 @section('content')

@@ -29,5 +29,7 @@
     "Before proceeding, please check your email for a verification link.": "Antes de poder continuar, por favor, confirma tu correo electrónico con el enlace que te hemos enviado.",
     "If you did not receive the email": "Si no has recibido el email",
     "click here to request another": "pulsa aquí para que te enviemos otro",
-    "All rights reserved.":  "Todos los derechos reservados."
+    "All rights reserved.":  "Todos los derechos reservados.",
+    "The :attribute field must contain at least one uppercase and one lowercase letter.":"El campo :attribute debe contener al menos una letra mayúscula y una minúscula.",
+    "The :attribute field must contain at least one symbol.":"EL campo :attribute debe contener al menos un símbolo."
 }

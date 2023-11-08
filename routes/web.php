@@ -48,6 +48,10 @@ Route::get('check2fa/reenviar', [CheckTwoFactorCotroller::class, 'reenviar'])->n
 Route::middleware(['auth', 'verified','2fa'])->group(function () {
     Route::get('home', [HomeController::class, 'index'])->name('home');
     Route::post('validarec', [HomeController::class, 'validarec'])->name('validarec');
+    Route::get('/mi-perfil', [HomeController::class, 'miPerfil'])->name('mi-perfil');
+    Route::post('/actualizar-contrasena', [HomeController::class, 'actualizarContrasena'])->name('actualizar-contrasena');
+    
+
 
     // usuarios
     Route::resource('usuarios', UserController::class);

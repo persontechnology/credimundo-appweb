@@ -130,8 +130,8 @@ class User extends Authenticatable
             'cuenta_user_id', // Foreign key on the deployments table...
             'id', // Local key on the projects table...
             'id' // Local key on the environments table...
-        );
-        // ->where('creditos.estado','ENTREGADO');
+        )
+        ->where('creditos.estado','ENTREGADO');
     }
     
 }

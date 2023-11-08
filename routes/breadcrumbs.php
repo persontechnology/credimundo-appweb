@@ -167,3 +167,13 @@ Breadcrumbs::for('plazo-fijo.edit', function (BreadcrumbTrail $trail,$c) {
     $trail->parent('plazo-fijo.index');
     $trail->push('Editar', route('plazo-fijo.edit',$c));
 });
+
+// mis cuentas
+Breadcrumbs::for('mis-cuentas', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Mis cuentas', route('mis-cuentas'));
+});
+Breadcrumbs::for('mis-creditos', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Mis créditos', route('mis-creditos'));
+});
