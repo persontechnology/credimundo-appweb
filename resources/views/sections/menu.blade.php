@@ -102,6 +102,14 @@
                             </span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('reportes') }}" class="nav-link {{ Route::is('reportes*')?'active':'' }}">
+                            <i class="ph ph-chart-line"></i>
+                            <span>
+                                Reportes
+                            </span>
+                        </a>
+                    </li>
                 @endhasanyrole
 
 

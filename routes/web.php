@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MisCreditosController;
 use App\Http\Controllers\MisCuentasController;
 use App\Http\Controllers\PlazoFijoController;
+use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\TipoCreditoController;
 use App\Http\Controllers\TipoCuentaController;
 use App\Http\Controllers\TipoTransaccionController;
@@ -106,6 +107,9 @@ Route::middleware(['auth', 'verified','2fa'])->group(function () {
     // caja
     Route::resource('caja', CajaController::class);
 
+
+    // reportes
+    Route::get('reportes',[ReportesController::class,'index'])->name('reportes');
 
 
     // PARA EL SOSIO
