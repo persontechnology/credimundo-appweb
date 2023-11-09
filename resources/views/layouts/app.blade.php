@@ -52,7 +52,9 @@
 <body>
 
 	<!-- Main navbar -->
-	<div class="navbar navbar-dark navbar-expand-lg navbar-static border-bottom border-bottom-white border-opacity-10">
+	<div class="navbar navbar-dark bg-primary navbar-expand-lg navbar-static border-bottom border-bottom-white border-opacity-10">
+	{{-- <div class="navbar navbar-dark bg-primary navbar-expand-lg"> --}}
+
 		<div class="container-fluid">
 
 			<div class="navbar-brand flex-1 flex-lg-0">
