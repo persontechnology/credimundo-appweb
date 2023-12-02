@@ -14,8 +14,8 @@
 <div class="row">
     @foreach ($misCuentas as $mc)
     <div class="col-lg-6">
-        <div class="card border border-dark shadow-sm">
-            <div class="card-header bg-dark text-white border-bottom-0">
+        <div class="card border  shadow-sm">
+            <div class="card-header bg-primary text-white border-bottom-0">
                 <h6 class="mb-0">{{ $mc->tipoCuenta->nombre }}</h6>
                 <h6 class="mb-0">{{ $mc->numero_cuenta }}</h6>
             </div>
@@ -27,7 +27,7 @@
                 </h1>
                 @if ($mc->transacciones)
                 <div class="table-responsive text-center">
-                    <table class="table">
+                    <table class="table table-sm table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">Fecha</th>

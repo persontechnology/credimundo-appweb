@@ -14,8 +14,8 @@
 <div class="row">
     @foreach ($misCreditos as $mc)
     <div class="col-lg-12">
-        <div class="card border border-dark shadow-sm">
-            <div class="card-header bg-dark text-white border-bottom-0">
+        <div class="card border shadow-sm">
+            <div class="card-header bg-primary text-white border-bottom-0">
                 <h6 class="mb-0">{{ $mc->tipoCredito->nombre }}</h6>
                 <h6 class="mb-0">$ {{ $mc->monto }}</h6>
             </div>
@@ -30,7 +30,7 @@
             <div class="card-footer text-muted">
                 @if ($mc->tablaCreditos->count()>0)
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-sm table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">N°</th>

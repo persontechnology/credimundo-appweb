@@ -18,11 +18,30 @@
             border-collapse: collapse;
             
         }
+        .pasos {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .pasos p, .pasos li {
+            margin-bottom: 10px;
+        }
+
+        .pasos a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .pasos a:hover {
+            text-decoration: underline;
+        }
         
     </style>
 </head>
 <body>
     
+    <div>
         <p style="text-align: right;">Fecha de apertura: {{ $cuentaUser->created_at }}</p>
         <p>
             Mg. Ing. David Criollo <br>
@@ -196,6 +215,40 @@
             1. Con este documento prosiga a cancelar $<strong>{{ $cuentaUser->valor_apertura }} </strong> en la caja, retire su nueva libreta junto con el recibo. <br>
             2. Acerque a información para activar su cuenta.            
         </p>
+    </div>
+    <div style="page-break-after:always;"></div>
+    <br>
+
+    <div class="pasos">
+        <h2>
+            Para acceder a nuestra plataforma web de Credimundo, sigue estos sencillos pasos:
+        </h2>
+        <p>Abre tu navegador web y ve al siguiente enlace: <a href="https://appweb.credimundo.com.ec/login" target="_blank">https://appweb.credimundo.com.ec/login</a>.</p>
+      
+        <p>En la página de inicio de sesión, completa los siguientes campos con tus datos:</p>
+        <ul>
+          <li><strong>Correo Electrónico: </strong>Ingresa la dirección de correo electrónico asociada a tu cuenta. ({{ $user->email??'CORREO ELECTRONICO NO REGISTRADO, POR FAVOR ACERQUE A INFORMACIÓN Y ACTUALIZE LOS DATOS.' }})</li>
+          <li><strong>Cédula de Identidad:</strong> Introduce tu número de cédula. ({{ Str::mask($user->identificacion, 'x', 0, -2) }})</li>
+        </ul>
+      
+        <p>Luego de ingresar tus datos, el sistema enviará un código de seguridad a tu dirección de correo electrónico registrada. Asegúrate de revisar tu bandeja de entrada.</p>
+      
+        <p>Abre el correo electrónico de Credimundo y busca el mensaje que contiene el código de seguridad. El código será necesario para el siguiente paso.</p>
+      
+        <p>Regresa a la plataforma e ingresa el código de seguridad en el campo correspondiente.</p>
+      
+        <p>Una novedad emocionante: ¡muy pronto estaremos lanzando nuestra plataforma móvil para proporcionarte una experiencia aún más conveniente! Mantente atento a futuras actualizaciones.</p>
+      
+        <p>Una vez dentro, podrás visualizar tus movimientos y revisar la información sobre tus créditos.</p>
+      
+        <p>Por tu propia seguridad, te recomendamos cambiar tu contraseña de forma periódica. Puedes hacerlo desde la sección de configuración de tu perfil.</p>
+        <p>
+            <strong>
+                Agradecemos que hayas elegido Credimundo como tu plataforma financiera. Si tienes alguna pregunta o necesitas ayuda adicional, no dudes en ponerte en contacto con nuestro equipo de soporte. ¡Esperamos que tu experiencia con nosotros sea excelente!
+            </strong>
+        </p>
+      </div>
+
    
 </body>
 </html>

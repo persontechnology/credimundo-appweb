@@ -58,9 +58,9 @@
     </div>
 
     <div class="border-top text-center py-2 px-3">
-        <a href="#!" class="btn btn-yellow fw-semibold w-100 my-1">
-            <i class="ph-shopping-cart me-2"></i>
-            información
+        <a href="https://credimundo.com.ec/" target="_blanck" class="btn btn-primary fw-semibold w-100 my-1">
+            <i class="ph ph-globe me-2"></i>
+            www.credimundo.com.ec
         </a>
     </div>
 </div>
