@@ -288,6 +288,7 @@ class CuentaUserController extends Controller
             DB::beginTransaction();
             $t=Transaccion::create($data);
             DB::commit();
+            // enviar notificacion cliente
             Session::flash('success','Transacción realizado');
             return redirect()->route('cuentas-usuario.show',$request->cuentaUser);
         } catch (\Throwable $th) {

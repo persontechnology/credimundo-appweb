@@ -98,7 +98,7 @@ class User extends Authenticatable
 
     public function getApellidosNombresAttribute()
     {
-        return "{$this->apellidos} {$this->nombres}";
+        return strtoupper("{$this->apellidos} {$this->nombres}");
     }
 
     // usuario es garante de un credito si o no

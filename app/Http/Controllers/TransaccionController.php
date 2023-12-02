@@ -41,7 +41,7 @@ class TransaccionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Deivid, tener cuidado con esta validacion se usa tambien en CuentaUserController.guardarTransaccion
      */
     public function store(StoreRq $request)
     {
@@ -60,7 +60,7 @@ class TransaccionController extends Controller
             DB::beginTransaction();
             $t=Transaccion::create($data);
 
-            // pago de credito automatico
+            // enviar notificacion cliente
             
 
             DB::commit();

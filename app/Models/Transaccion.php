@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\Transaccion\NotificarTransaccion;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +55,12 @@ class Transaccion extends Model
             $model->cuentaUser->save();
             $model->valor_disponible=$model->cuentaUser->valor_disponible;
             $model->save();
+
+            // enviar notificacion si el cliente tiene email
+            if($model->cuentaUser->user->email){
+                $model->cuentaUser->user->notify(new NotificarTransaccion($model));
+            }
+            
          });
 
          self::updated(function($model){
