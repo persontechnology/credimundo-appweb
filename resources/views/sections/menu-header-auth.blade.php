@@ -383,7 +383,7 @@
             <div class="status-indicator-container">
                 
                 @if (Auth::user()->foto)
-                    <img src="{{ route('usuarios.ver-archivo',[Auth::id(),'foto']) }}" class="w-32px h-32px rounded-pill" alt="">
+                    <img src="{{ route('user.ver-archivo',[Auth::id(),'foto']) }}" class="w-32px h-32px rounded-pill" alt="">
                 @else
                     <img src="{{ asset('img/perfil.png') }}" class="w-32px h-32px rounded-pill" alt="">
                 @endif

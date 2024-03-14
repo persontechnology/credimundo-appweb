@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 
 class HomeController extends Controller
@@ -68,6 +69,23 @@ class HomeController extends Controller
 
         return redirect()->route('login')->with("success", "¡Contraseña cambiada con éxito!");
 
+    }
+
+    // ver foto o identificacion de usuario
+    public function verArchivo($idUser,$tipo)
+    {
+        $user=User::findOrFail($idUser);
+        switch ($tipo) {
+            case 'foto':
+                return Storage::get($user->foto);        
+                break;
+            case 'foto_identificacion':
+                return Storage::get($user->foto_identificacion);        
+                break;
+            default:
+                return '';
+                break;
+        }
     }
 
 }

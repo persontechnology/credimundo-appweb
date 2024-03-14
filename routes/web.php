@@ -51,7 +51,7 @@ Route::middleware(['auth', 'verified','2fa'])->group(function () {
     Route::post('validarec', [HomeController::class, 'validarec'])->name('validarec');
     Route::get('/mi-perfil', [HomeController::class, 'miPerfil'])->name('mi-perfil');
     Route::post('/actualizar-contrasena', [HomeController::class, 'actualizarContrasena'])->name('actualizar-contrasena');
-    
+    Route::get('user/ver-archivo/{id}/{tipo}', [HomeController::class,'verArchivo'])->name('user.ver-archivo');
 
 
     // usuarios
