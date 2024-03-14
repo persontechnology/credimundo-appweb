@@ -194,4 +194,12 @@ class UserController extends Controller
         }
         return json_encode(['success'=>'ok']);
     }
+
+
+    public function autenticar($id)  {
+        $user=User::find($id);
+        $this->authorize('update',$user);
+        Auth::login($user);
+        return redirect()->route('home')->with('success','Cambiado de cuenta a usuario, '.$user->apellidos_nombre);
+    }
 }

@@ -20,11 +20,21 @@ class UserPolicy
         }
         return true;
     }
+
+
     public function delete(User $user, User $model): bool
     {
         if($model->hasRole('ADMINISTRADOR') || $user->id===$model->id){
             return false;
         }
         return true;
+    }
+
+    public function autenticar(User $user, User $model): bool
+    {
+        if($user->hasRole('ADMINISTRADOR')){
+            return true;
+        }
+        return false;
     }
 }

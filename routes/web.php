@@ -60,6 +60,7 @@ Route::middleware(['auth', 'verified','2fa'])->group(function () {
     Route::post('usuarios/actualizar-identificacion-foto', [UserController::class,'actualizarIdentificacionFoto'])->name('usuarios.actualizar-identificacion-foto');
     Route::get('usuarios/ver-archivo/{id}/{tipo}', [UserController::class,'verArchivo'])->name('usuarios.ver-archivo');
     Route::get('usuarios/descargar-archivo/{id}/{tipo}', [UserController::class,'descargarArchivo'])->name('usuarios.descargar-archivo');
+    Route::get('usuarios/autenticar/{id}', [UserController::class,'autenticar'])->name('usuarios.autenticar');
 
     // tipo de cuentas
     Route::resource('tipo-cuentas', TipoCuentaController::class);
