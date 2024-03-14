@@ -38,6 +38,8 @@
 	<link rel="stylesheet" href="{{ asset('assets/js/vendor/jquery-confirm/jquery-confirm.min.css') }}">
 	<script src="{{ asset('assets/js/vendor/jquery-confirm/jquery-confirm.min.js') }}"></script>
 	
+	{{-- animate --}}
+	<link href="{{ asset('assets/css/animate.min.css') }}" rel="stylesheet" type="text/css"> 
 	{{-- plugins extras --}}
 	@stack('scriptsHeader')
 

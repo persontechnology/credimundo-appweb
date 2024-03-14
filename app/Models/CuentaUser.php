@@ -75,7 +75,7 @@ class CuentaUser extends Model
     // obtener solo los ultimos 10 transacciones, es para mostrar solo para el socio
     public function transaccionesSocio()
     {
-        return $this->hasMany(Transaccion::class, 'cuenta_user_id')->where('estado','OK')->latest();
+        return $this->hasMany(Transaccion::class, 'cuenta_user_id')->where('estado','OK')->take(3)->latest();
     }
 
 }

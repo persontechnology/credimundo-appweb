@@ -7,60 +7,58 @@
 
 
 
+
 @if ($misCreditos->count()>0)
 <div class="mb-3 mt-2">
     <h6 class="mb-0">Creditos entregados {{ $misCreditos->count() }}</h6>
 </div>
 <div class="row">
     @foreach ($misCreditos as $mc)
-    <div class="col-lg-12">
-        <div class="card border shadow-sm">
-            <div class="card-header bg-primary text-white border-bottom-0">
-                <h6 class="mb-0">{{ $mc->tipoCredito->nombre }}</h6>
-                <h6 class="mb-0">$ {{ $mc->monto }}</h6>
+    <div class="col-lg-12" >
+        <div class="card animate__animated animate__pulse">
+            <div class="card-header border-bottom-0">
+                <h6 class="mb-0">CRÉDITO {{ $mc->tipoCredito->nombre }}</h6>
+                <p class="mb-0"><strong>MONTO:</strong> ${{ $mc->monto }}</p>
+                <p class="mb-0"><strong>DÍA DE PAGO:</strong> {{ Carbon\Carbon::parse($mc->dia_pago)->format('d') }}</p>
+                <p class="mb-0"><strong>FECHA DE VENCIMIENTO:</strong> {{ $mc->fecha_vencimiento }}</p>
+                <p class="mb-0"><strong>NÚMERO DE CUOTAS:</strong> {{ $mc->numero_cuotas }}</p>
+                <p class="mb-0"><strong>PAGO MENSUAL:</strong> ${{ $mc->pago_mensual }}</p>
+              
             </div>
 
             <div class="card-body">
-                <p>DÍA DE PAGO: <strong>{{ Carbon\Carbon::parse($mc->dia_pago)->format('d') }}</strong></p>
-                <p>FECHA DE VENCIMIENTO: <strong>{{ $mc->fecha_vencimiento }}</strong></p>
-                <p>NÚMERO DE CUOTAS: <strong>{{ $mc->numero_cuotas }}</strong></p>
-                <p>PAGO MENSUAL: <strong>${{ $mc->pago_mensual }}</strong></p>
-            </div>
-
-            <div class="card-footer text-muted">
                 @if ($mc->tablaCreditos->count()>0)
-                    <div class="table-responsive">
-                        <table class="table table-sm table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">N°</th>
-                                    <th scope="col">FECHA DE PAGO</th>
-                                    <th scope="col">PAGO MENSUAL</th>
-                                    <th scope="col">INTERES</th>
-                                    <th scope="col">SALDO CAPITAL</th>
-                                    <th scope="col">TOTAL</th>
-                                    <th scope="col">ESTADO</th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($mc->tablaCreditos as $tc)
-                                <tr class="">
-                                    <td scope="row">{{ $tc->numero_pago }}</td>
-                                    <td>{{ $tc->fecha_pago }}</td>
-                                    <td>{{ $tc->pago_mensual }}</td>
-                                    <td>{{ $tc->interes }}</td>
-                                    <td>{{ $tc->saldo_capital }}</td>
-                                    <td>{{ $tc->total }}</td>
-                                    <td>{{ $tc->estado }}</td>
-                                </tr>    
-                                @endforeach
+                <div class="table-responsive">
+                    <table class="table table-sm table-bordered table-">
+                        <thead>
+                            <tr>
+                                <th scope="col">N° de pago</th>
+                                <th scope="col">FECHA DE PAGO</th>
+                                <th scope="col">PAGO MENSUAL</th>
+                                <th scope="col">INTERES</th>
+                                <th scope="col">SALDO CAPITAL</th>
+                                {{-- <th scope="col">TOTAL</th> --}}
+                                <th scope="col">ESTADO</th>
                                 
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                @endif
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($mc->tablaCreditos->where('estado','!=','PAGADO') as $tc)
+                            <tr class="">
+                                <td scope="row">{{ $tc->numero_pago }}</td>
+                                <td>{{ $tc->fecha_pago }}</td>
+                                <td>{{ $tc->pago_mensual }}</td>
+                                <td>{{ $tc->interes }}</td>
+                                <td>{{ $tc->saldo_capital }}</td>
+                                {{-- <td>{{ $tc->total }}</td> --}}
+                                <td>{{ $tc->estado }}</td>
+                            </tr>    
+                            @endforeach
+                            
+                        </tbody>
+                    </table>
+                </div>
+            @endif
             </div>
         </div>
     </div>
@@ -75,11 +73,3 @@
 
 
 @endsection
-
-
-@push('scripts')
-    
-    
-  
-
-@endpush

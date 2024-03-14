@@ -7,9 +7,9 @@
 
 @section('content')
 <!-- Content area -->
-<div class="d-flex justify-content-center align-items-center">
-    <div class="login-form" action="index.html">
-        <div class="card mb-0">
+<div class="d-flex justify-content-center align-items-center ">
+    <div class="login-form">
+        <div class="card mb-0 animate__animated animate__pulse">
             <div class="card-body">
                 <div class="text-center">
                     <div class="card-img-actions d-inline-block mb-3">

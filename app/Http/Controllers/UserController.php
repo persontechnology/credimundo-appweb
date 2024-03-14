@@ -200,6 +200,6 @@ class UserController extends Controller
         $user=User::find($id);
         $this->authorize('update',$user);
         Auth::login($user);
-        return redirect()->route('home')->with('success','Cambiado de cuenta a usuario, '.$user->apellidos_nombre);
+        return redirect()->route('home')->with('success','Cambiado de cuenta a usuario, '.$user->email);
     }
 }

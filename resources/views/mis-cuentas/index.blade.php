@@ -11,28 +11,30 @@
 <div class="mb-3 mt-2">
     <h6 class="mb-0">Cuentas activas {{ $misCuentas->count() }}</h6>
 </div>
-<div class="row">
+<div class="row ">
     @foreach ($misCuentas as $mc)
-    <div class="col-lg-6">
-        <div class="card border  shadow-sm">
-            <div class="card-header bg-primary text-white border-bottom-0">
+    <div class="col-lg-6 ">
+        <div class="card animate__animated animate__pulse">
+            <div class="card-header">
                 <h6 class="mb-0">{{ $mc->tipoCuenta->nombre }}</h6>
                 <h6 class="mb-0">{{ $mc->numero_cuenta }}</h6>
-            </div>
-
-            <div class="card-body">
-                <p>Valor disponible:</p>
-                <h1>
+                <p class="mb-0">Valor disponible:</p>
+                <h1 class="mb-0">
                     <strong>${{ $mc->valor_disponible }}</strong>
                 </h1>
+            </div>
+
+           
+               
                 @if ($mc->transacciones)
                 <div class="table-responsive text-center">
-                    <table class="table table-sm table-bordered">
-                        <thead>
-                            <tr>
+                    <table class="table table-sm table-bordered ">
+                        <thead >
+                            <tr >
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Transacción</th>
                                 <th scope="col">Valor</th>
+                                <th scope="col">Saldo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,9 +45,10 @@
                                     <td scope="row">{{ $transacion->created_at }}</td>
                                     <td>{{ $transacion->tipoTransaccion->nombre }}</td>
                                     <td>
-                                        <strong class="{{ $transacion->tipoTransaccion->tipo_signo=='+'?'text-success':'text-danger' }}">
-                                            {{ $transacion->tipoTransaccion->tipo_signo }}{{ $transacion->valor }}
-                                        </strong>
+                                        {{ $transacion->tipoTransaccion->tipo_signo }}{{ $transacion->valor }}
+                                    </td>
+                                    <td>
+                                        {{ $transacion->valor_disponible }}
                                     </td>
                                 </tr>
                             @endforeach
@@ -55,7 +58,7 @@
                     </table>
                 </div>
                 @endif
-            </div>
+          
 
             <div class="card-footer text-muted">
                 <form action="{{ route('enviar-mas-movimietos-correo') }}" method="POST" autocomplete="off" id="formMasMovimientos">
