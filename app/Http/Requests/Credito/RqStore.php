@@ -39,6 +39,7 @@ class RqStore extends FormRequest
             'tipo_credito'=>'required|exists:tipo_creditos,tasa_efectiva_anual',
             'apellidos_nombres'=>'nullable',
             'interes_certificado_plazo_fijo'=>'required|in:0,1,2,3,4,5',
+            'seguro_credito'=>'required|in:0,1,2,3,4,5',
             'total_certificado_plazo_fijo'=>'required|numeric|gte:0|regex:'.$rg_decimal,
             'dia_pago'=>'required|date',
             'detalle'=>'nullable|string|max:255',

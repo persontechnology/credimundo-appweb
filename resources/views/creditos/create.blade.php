@@ -89,6 +89,9 @@
                                 <option value="5" {{ old('seguro_credito')=='5'?'selected':'' }}>5%</option>
                                 <option value="4" {{ old('seguro_credito')=='4'?'selected':'' }}>4%</option>
                                 <option value="3" {{ old('seguro_credito')=='3'?'selected':'' }}>3%</option>
+                                <option value="2" {{ old('seguro_credito')=='2'?'selected':'' }}>2%</option>
+                                <option value="1" {{ old('seguro_credito')=='1'?'selected':'' }}>1%</option>
+                                <option value="0" {{ old('seguro_credito')=='0'?'selected':'' }}>0%</option>
                             </select>
                             <label for="seguro_credito">Seguro de crédito<i class="text-danger">*</i></label>
                             @error('seguro_credito')
