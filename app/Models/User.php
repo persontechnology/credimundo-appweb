@@ -78,7 +78,7 @@ class User extends Authenticatable
     // Deivid, se genera el codigo de 6 digitos para el acceso
     public function generarCodigoLogin()
     {
-        $user=Auth::user();
+        $user=$this;
         $code=random_int(100000,999999);
         UserCode::updateOrCreate(
             ['user_id'=>$user->id],
