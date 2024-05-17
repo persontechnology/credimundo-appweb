@@ -57,9 +57,9 @@ class Transaccion extends Model
             $model->save();
 
             // enviar notificacion si el cliente tiene email
-            if($model->cuentaUser->user->email){
-                $model->cuentaUser->user->notify(new NotificarTransaccion($model));
-            }
+            // if($model->cuentaUser->user->email){
+            //     $model->cuentaUser->user->notify(new NotificarTransaccion($model));
+            // }
             
          });
 
