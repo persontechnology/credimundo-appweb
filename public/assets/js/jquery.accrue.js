@@ -347,7 +347,7 @@
                     '<th class="accrue-total-interest">Interés</th>'+
                     '<th class="accrue-total-payments">Total de pago</th>'+
                     '<th class="accrue-balance">Saldo capital</th>'+
-                    '<th class="accrue-total-suma">Total</th>'+
+                    '<th class="accrue-total-suma">Precancelar</th>'+
                     '</tr></thead><tbody>',
                 interest_per_payment = loan_info.payment_amount-(loan_info.original_amount/loan_info.num_payments),
                 amount_from_balance = loan_info.payment_amount-interest_per_payment,
@@ -397,7 +397,7 @@
                 var interest_f=  Math.round(counter_interest *100)/100;
                 var pagos_f=  Math.round(counter_payment *100)/100;
                 var balance_f=  Math.round(counter_balance *100)/100;
-                var total_f=  Math.round((pagos_f+balance_f) *100)/100;
+                var total_f=  Math.round((monto_f+balance_f) *100)/100;
                 
 
                 var numero_pago_fila='<input type="hidden" name="numero_pago_tabla['+(i+1)+']" value="'+(i+1)+'" />';

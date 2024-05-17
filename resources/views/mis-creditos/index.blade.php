@@ -29,29 +29,29 @@
             <div class="card-body">
                 @if ($mc->tablaCreditos->count()>0)
                 <div class="table-responsive">
-                    <table class="table table-sm table-bordered table-">
+                    <table class="table table-sm table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col">N° de pago</th>
-                                <th scope="col">FECHA DE PAGO</th>
-                                <th scope="col">PAGO MENSUAL</th>
-                                <th scope="col">INTERES</th>
-                                <th scope="col">SALDO CAPITAL</th>
-                                {{-- <th scope="col">TOTAL</th> --}}
-                                <th scope="col">ESTADO</th>
+                                <th class="text-center" scope="col">N°</th>
+                                <th class="text-center" scope="col">FECHA DE PAGO</th>
+                                <th class="text-center" scope="col">PAGO MENSUAL</th>
+                                <th class="text-center" scope="col">INTERES</th>
+                                <th class="text-center" scope="col">SALDO CAPITAL</th>
+                                <th class="text-center bg-primary fw-bold" scope="col">PRECANCELAR</th>
+                                <th class="text-center" scope="col">ESTADO</th>
                                 
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($mc->tablaCreditos->where('estado','!=','PAGADO') as $tc)
                             <tr class="">
-                                <td scope="row">{{ $tc->numero_pago }}</td>
-                                <td>{{ $tc->fecha_pago }}</td>
-                                <td>{{ $tc->pago_mensual }}</td>
-                                <td>{{ $tc->interes }}</td>
-                                <td>{{ $tc->saldo_capital }}</td>
-                                {{-- <td>{{ $tc->total }}</td> --}}
-                                <td>{{ $tc->estado }}</td>
+                                <td class="text-center" scope="row">{{ $tc->numero_pago }}</td>
+                                <td class="text-center">{{ $tc->fecha_pago }}</td>
+                                <td class="text-center">{{ $tc->pago_mensual }}</td>
+                                <td class="text-center">{{ $tc->interes }}</td>
+                                <td class="text-center">{{ $tc->saldo_capital }}</td>
+                                <td class="text-center bg-primary fw-bold">{{ $tc->total }}</td>
+                                <td class="text-center">{{ $tc->estado }}</td>
                             </tr>    
                             @endforeach
                             

@@ -64,7 +64,7 @@
                 <th>Interés</th>
                 <th>Total de pago</th>
                 <th>Saldo capital</th>
-                <th>Total</th>
+                <th>Precancelar</th>
                 <th>Estado</th>
             </tr>
             @foreach ($credito->tablaCreditos as $tc)

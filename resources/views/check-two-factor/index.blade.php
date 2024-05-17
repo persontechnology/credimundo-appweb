@@ -22,7 +22,7 @@
 
                         <div class="form-floating form-control-feedback form-control-feedback-start mb-3">
                             <div class="form-control-feedback-icon">
-                                <i class="ph-user"></i>
+                                <i class="ph ph-password"></i>
                             </div>
                             <input id="codigo" type="number" class="form-control @error('codigo') is-invalid @enderror" name="codigo" value="{{ old('codigo') }}" required autocomplete="codigo" autofocus>
                             <label>Código</label>
